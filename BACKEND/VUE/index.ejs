@@ -1,0 +1,47 @@
+<%- include('./PARTIALS/header.ejs') %>
+
+    <h1 class="front-page-title">DONGEONS & DRAGONS HELPER</h1>
+
+    <h2>CHOISIR UN MODE DE JEU</h2>
+    <div class="choice">
+        <div class="btn-choices">
+            <button id="btn-1" >Campagne physique</button>
+            <button id="btn-2" >Campagne en ligne</button>
+        </div>
+        <div id="modeText"></div>
+        
+    </div>
+    
+    <script>
+        const modes = <%- JSON.stringify(modes) %>;
+        const modeText = document.getElementById("modeText");
+
+  document.getElementById("btn-1").onclick = () => {
+    modeText.textContent = modes[0].mode;
+  };
+
+  document.getElementById("btn-2").onclick = () => {
+    modeText.textContent = modes[1].mode;
+  };
+    </script>
+
+    <button id="rollBtn" type="button">Lancez les dés</button>
+    <p>Résultat : <strong id="rollResult"></strong></p>
+    
+
+    
+
+<script>
+  const btn = document.getElementById('rollBtn');
+  const out = document.getElementById('rollResult');
+
+  btn.addEventListener('click', async () => {
+    
+      const r = await fetch('/roll');
+    
+      const data = await r.json();
+      out.textContent = data.result;
+  });
+</script>
+
+<%- include('./PARTIALS/footer.ejs') %>

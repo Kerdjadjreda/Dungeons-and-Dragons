@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dongeons & Dragons</title>
+</head>
+<link rel="stylesheet" href="./CSS/login.css">
+<body>
+    <nav class="navbar-home">
+<ul class="navbar-list">
+    <li><a href="/">ABOUT</a></li>
+    <li><a href="#">LOGIN</a></li>
+</ul>
+</nav>
+
+<div class="login-container">
+    <h1>SIGN IN</h1>
+    <div class="login-fullbox">
+        
+        <form action="/login" method="POST">
+            <div class="label-one">
+                <label for="">Pseudo </label>
+                    <input type="text" name="login">
+            </div>
+            <div class="label-two">
+            <label for="">Password
+                <input type="password" name="password" id="">
+            </label>
+            <button type="submit">Envoyer</button>
+            </div>
+        </form>
+        <div class="login-header">
+            <p>Not registered yet ?<a href="#"> Create account</a></p>
+        </div>
+    </div>
+
+    
+
+</div>
+
+<%- include('./PARTIALS/footer.ejs') %>

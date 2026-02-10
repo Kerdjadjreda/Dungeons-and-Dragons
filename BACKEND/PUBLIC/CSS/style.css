@@ -1,0 +1,87 @@
+.navbar-home{
+    padding: 8px;
+    background-color: rgb(49, 45, 44);
+}
+
+.navbar-list{
+display: flex;
+justify-content: end;
+
+}
+.navbar-list li {
+    margin: 8px;
+    list-style-type: none;
+}
+
+.navbar-list li a {
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    
+}
+
+.navbar-list li a:hover{
+    color: rgb(255, 199, 77);
+    transform: scale(1.2);
+}
+
+
+.front-page-title {
+    text-align: center;
+    text-shadow: rgb(39, 35, 35) 1px 0 10px;
+    margin: 0%;
+    font-size: 4rem;
+    padding: 10vh;
+    color: rgb(255, 255, 255);
+    background-image: url("/IMG/DD1.png");
+}
+h2 {
+    text-align: center;
+}
+#btn-1, #btn-2 {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #00000080;
+  text-shadow: none;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #00000080;
+  transition: 0.5s ease;
+}
+
+#btn-1:hover, #btn-2:hover {
+  color: #ffffff;
+  background: #e6b224;
+  border: 1px solid #e6b224;
+  text-shadow: 0 0 5px #000000, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #e6b224, 0 0 20px #e6b224, 0 0 50px #e6b224,
+    0 0 100px #e6b224;
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-choices {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+p{
+    margin-left: 1.2rem;
+}
+
+#modeText{
+    margin: 10px;
+    text-align: center;
+    width: 60%;
+}
