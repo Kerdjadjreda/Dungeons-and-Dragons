@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const rollD20 = require('../SERVICES/dices.js');
 const modes = require('../JSON/info.json')
+const userNames = require('../JSON/userNames.json');
+
 
 router.get('/', (req, res) =>{
   res.render('index.ejs', { modes });
@@ -16,22 +18,31 @@ router.get('/login', (req, res) =>{
     res.render('login.ejs')
 });
 
+
 router.post('/login', (req, res) =>{
     //console.log(req.body);
-   const login = req.body.login;
+    // Je récupère temporairement en brut les infos.
+    // Je mettrais plus en place un système plus complexe d'Auth et de hashage
+   const login = req.body.login.toLowerCase();
    const pwd = req.body.password;
-     if(login ==="test" && pwd ==="123"){
+    for(const user of userNames){
+       let firstName = user.name.toLowerCase();
+        const pass = user.password;
+     if(login === firstName && pwd === pass){
         
-        res.redirect('/profil')
-    }
+       return res.render('profil.ejs', { firstName })
+       
+    }}
 
 });
 
-router.get('/profil', (req, res) =>{
-    res.render('profil')
+
+/*router.get('/profil', (req, res) =>{
+
+    res.render('profil.ejs', { firstName })
     
 });
-
+*/
 
 
 module.exports = router;
