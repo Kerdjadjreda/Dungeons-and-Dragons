@@ -9,6 +9,7 @@ router.get('/', (req, res) =>{
   res.render('index.ejs', { modes });
 });
 
+// ici je crée une route /roll qui va éxécuter ma fonction rollD20 et passer à la vue le résultat
 router.get('/roll', (req, res) =>{
     let result = rollD20();
     res.json({ result })
@@ -16,6 +17,7 @@ router.get('/roll', (req, res) =>{
 
 router.get('/login', (req, res) =>{
     res.render('login.ejs')
+
 });
 
 
@@ -24,12 +26,16 @@ router.post('/login', (req, res) =>{
     // Je récupère temporairement en brut les infos.
     // Je mettrais plus en place un système plus complexe d'Auth et de hashage
    const login = req.body.login.toLowerCase();
+   req.session.connectedUser = login;
    const pwd = req.body.password;
+   req.session.connectedPwd = pwd;
+   console.log(req.session);
     for(const user of userNames){
-       let firstName = user.name.toLowerCase();
+       const firstName = user.name.toLowerCase();
         const pass = user.password;
-     if(login === firstName && pwd === pass){
-        
+
+     if(req.session.connectedUser === firstName && req.session.connectedPwd === pass){
+        req.session.connectedUser = firstName;
        return res.render('profil.ejs', { firstName })
        
     }}
@@ -37,12 +43,15 @@ router.post('/login', (req, res) =>{
 });
 
 
-/*router.get('/profil', (req, res) =>{
-
+router.get('/profil', (req, res) =>{
+const firstName = req.session.connectedUser;
     res.render('profil.ejs', { firstName })
+    console.log(firstName);
     
 });
-*/
 
+router.get('/campaign', (req, res) =>{
+    
+})
 
 module.exports = router;

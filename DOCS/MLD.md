@@ -18,6 +18,12 @@ characters (**id**, name, race, class, exp, hp, mana, gold, str, cons, dext, int
 -FK campaign_id = campaigns(id) \
 -FK (campaign_id, user_id) = campaign_members(campaign_id, user_id)
 
+## items
+items (**id**, name, effect_type, effect_value)
+
+## characters_items
+characters_inventory (character_id, item_id, quantity, is_equipped)
+
 ## monster_templates
 monster_template(**id**, name, cr, type, source, stat_block)
 

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="hy5NRJDjFGe1Ka2dUhig" name="Page-1">
-        <mxGraphModel dx="741" dy="1055" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1163" dy="737" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -136,7 +136,7 @@
                 <mxCell id="49" value="CAMPAIGN_MEMBERS" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="270" y="10" width="200" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="id" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="49" vertex="1">
+                <mxCell id="57" value="user_id&lt;div&gt;campaign_id&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="49" vertex="1">
                     <mxGeometry x="70" y="30" width="60" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="50" value="0,n" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">

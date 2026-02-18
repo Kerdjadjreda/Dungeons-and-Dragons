@@ -5,8 +5,15 @@
     <h2>CHOISIR UN MODE DE JEU</h2>
     <div class="choice">
         <div class="btn-choices">
-            <button id="btn-1" >Campagne physique</button>
-            <button id="btn-2" >Campagne en ligne</button>
+          <select name="game_mode" id="game_mode">
+            <option value="" disabled selected> Choisissez un mode</option>
+
+            <% for (const mode of modes) { %>
+            <option value="<%= mode.mode %>"> 
+              <%= mode.mode %> 
+            </option>
+            <% } %>
+            </select>
         </div>
         <div id="modeText"></div>
         
@@ -15,15 +22,17 @@
     <script>
         const modes = <%- JSON.stringify(modes) %>;
         const modeText = document.getElementById("modeText");
+        const select = document.getElementById("game_mode");
+      select.addEventListener("change", () => {
+        const selectedValue = select.value;
+        const selectedMode = modes.find( m => m.mode === selectedValue);
 
-  document.getElementById("btn-1").onclick = () => {
-    modeText.textContent = modes[0].content;
-  };
-
-  document.getElementById("btn-2").onclick = () => {
-    modeText.textContent = modes[1].content;
-  };
-    </script>
+        if(selectedMode){
+          modeText.textContent = selectedMode.content;
+        }
+      })
+      </script>
+  
 
     <button id="rollBtn" type="button">Lancez les dés</button>
     <p>Résultat : <strong id="rollResult"></strong></p>
