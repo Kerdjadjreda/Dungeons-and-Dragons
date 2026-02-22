@@ -10,7 +10,7 @@ POST http://localhost:3000/users/register
 content-type: application/json
 
 {
-  "email": "email@test.fr",
-  "username": "Anduin",
-  "password": "hashed"
+  "email": "yahou@yh.fr",
+  "username": "Thrall",
+  "password": "test"
 }

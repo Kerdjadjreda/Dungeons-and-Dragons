@@ -6,8 +6,8 @@ const userController = require("../CONTROLLERS/userController");
 
 userRouter.post("/register", userController.register);
 
-userRouter.get("/test", (req, res) =>{
+/*userRouter.get("/test", (req, res) =>{
     res.json({ ok: true });
-});
+});*/
 
 module.exports = userRouter;
