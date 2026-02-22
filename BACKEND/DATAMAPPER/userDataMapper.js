@@ -13,6 +13,15 @@ const userDataMapper = {
         return result.rows[0];
 
     },
+
+    async findByUsername(username){
+
+        const sqlQuery = `SELECT username, password FROM users
+                          WHERE username =$1;`;
+        const values = [username];
+        const result = await pool.query(sqlQuery, values);
+        return result.rows[0];
+    }
     
 
 };

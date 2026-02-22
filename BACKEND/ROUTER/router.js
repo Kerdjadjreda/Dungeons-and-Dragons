@@ -21,7 +21,7 @@ router.get('/login', (req, res) =>{
 });
 
 
-router.post('/login', (req, res) =>{
+/*router.post('/login', (req, res) =>{
     //console.log(req.body);
     // Je récupère temporairement en brut les infos.
     // Je mettrais plus en place un système plus complexe d'Auth et de hashage
@@ -40,7 +40,7 @@ router.post('/login', (req, res) =>{
        
     }}
 
-});
+}); */
 
 
 router.get('/profil', (req, res) =>{
