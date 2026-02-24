@@ -2,7 +2,7 @@ const { verifyToken } = require("../UTILS/jwt.js");
 
 //je crée mon middleware d'authentification
 const isConnected = (req, res, next) => {
-    console.log("HEADERS!!!", req.headers);
+    
     const authHeader = req.headers.authorization;
     
     if (!authHeader) {
@@ -14,8 +14,8 @@ const isConnected = (req, res, next) => {
 
     try{
         const checked = verifyToken(token);
-        console.log(checked)
-        req.userId = checked.userId;
+        req.userId = Number(checked.userId);
+        
         next();
     } catch (error) {
         return res.status(401).json({ error: "Token invalide ou expiré" });

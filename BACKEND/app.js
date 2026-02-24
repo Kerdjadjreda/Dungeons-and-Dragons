@@ -5,6 +5,7 @@ const session = require('express-session');
 const app = express();
 
 const userRouter = require("./ROUTER/userRouter.js")
+const campaignsRouter = require("./ROUTER/campaignsRouter.js")
 
 // J'utilise le moteur de rendu EJS
 app.set('view engine', 'ejs');
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
   //saveUninitialized: true,
   //cookie: { secure: false }
 //}))
-
+app.use("/campaigns", campaignsRouter);
 app.use("/users", userRouter);
 app.use(router);
 

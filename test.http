@@ -2,16 +2,12 @@ GET http://localhost:3000/
 
 ###
 
-GET http://localhost:3000/users/test
-
-###
-
 POST http://localhost:3000/users/register
 content-type: application/json
 
 {
-  "email": "yahou@yh.fr",
-  "username": "Thrall",
+  "email": "anduin@gmail.fr",
+  "username": "Anduin",
   "password": "test"
 }
 
@@ -22,4 +18,21 @@ content-type: application/json
 {
   "username": "Thrall",
   "password": "test"
+}
+
+###
+
+GET http://localhost:3000/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NDc0MzksImV4cCI6MTc3MTk1NDYzOX0.OItlW14-qQaQNnpT-062nrCGJRWKbl1jWR513k4YtBI
+
+###
+
+POST http://localhost:3000/campaigns
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NDc0MzksImV4cCI6MTc3MTk1NDYzOX0.OItlW14-qQaQNnpT-062nrCGJRWKbl1jWR513k4YtBI
+content-type: application/json
+
+{
+  "camp_name": "Baldur's gates",
+  "mode": "campagne physique",
+  "synopsis": "il était une fois"
 }
