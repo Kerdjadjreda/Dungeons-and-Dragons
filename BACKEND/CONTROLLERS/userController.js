@@ -1,5 +1,6 @@
 const userDatamapper = require("../DATAMAPPER/userDataMapper")
 const bcrypt = require("bcrypt");
+const { signToken } = require("../UTILS/jwt")
 
 const saltRounds = 10;
 
@@ -27,13 +28,23 @@ const userController = {
         //Je demande au datamapper de me retourner l'utilisateur par son username via la methode findByUsername
         const user = await userDatamapper.findByUsername(username);
         //Je récupère ensuite le mot de passe hash en BDD que je vais comparer avec celui du body
-        const isValid = await bcrypt.compare(password, user.password);
-        console.log("test2:#################", password, user.password)
-        //Si ça match, alors je renvois un status 201 avec les informations au format json.
-        //je m'occuperais des erreurs plus tard via des blocs tryCatch
-        if(isValid){
-            res.status(201).json({ id: user.id, username: user.username })
+        const match = await bcrypt.compare(password, user.password);
+        /*Si ça match, alors je renvois un status 201 avec les informations au format json.*/
+        if(match){
+            // il faut que je puisse générer et renvoyer un jwt avec l'id et le username si ça match
+            const payload = { userId: user.id, username: user.username };
+            const token = signToken(payload);
+            return res.json({ 
+                token, 
+                user: { userId: user.id, username: user.username } });
         }
+        return res.status(401).json({ error: "Pseudo ou mot de passe incorrect" })
+    },
+
+    async me (req, res) {
+        // console.log(req.userId)
+        const user = await userDatamapper.findById(req.userId);
+        res.json(user);
     }
 
 };

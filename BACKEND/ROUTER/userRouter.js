@@ -1,11 +1,12 @@
 const express = require("express");
 const userRouter = express.Router();
-
+const isConnected = require("../MIDDLEWARES/auth")
 const userController = require("../CONTROLLERS/userController");
-// console.log("ALLO ? TESTE ROUTE");
+
 
 userRouter.post("/register", userController.register);
-userRouter.post("/login", userController.login)
+userRouter.post("/login", userController.login);
+userRouter.get("/me", isConnected, userController.me);
 
 /*userRouter.get("/test", (req, res) =>{
     res.json({ ok: true });

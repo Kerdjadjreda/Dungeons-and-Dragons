@@ -44,9 +44,9 @@ router.get('/login', (req, res) =>{
 
 
 router.get('/profil', (req, res) =>{
-const firstName = req.session.connectedUser;
-    res.render('profil.ejs', { firstName })
-    console.log(firstName);
+
+    res.render('profil.ejs')
+    
     
 });
 
