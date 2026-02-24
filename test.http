@@ -23,16 +23,16 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NDc0MzksImV4cCI6MTc3MTk1NDYzOX0.OItlW14-qQaQNnpT-062nrCGJRWKbl1jWR513k4YtBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NTkyOTcsImV4cCI6MTc3MTk2NjQ5N30.m0u806qwOyKL31YvUtOPEFGJGAjFHI_-Zv0MgnoP2wQ
 
 ###
 
 POST http://localhost:3000/campaigns
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NDc0MzksImV4cCI6MTc3MTk1NDYzOX0.OItlW14-qQaQNnpT-062nrCGJRWKbl1jWR513k4YtBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NTkyOTcsImV4cCI6MTc3MTk2NjQ5N30.m0u806qwOyKL31YvUtOPEFGJGAjFHI_-Zv0MgnoP2wQ
 content-type: application/json
 
 {
-  "camp_name": "Baldur's gates",
-  "mode": "campagne physique",
-  "synopsis": "il était une fois"
+  "camp_name": "La guerre de Oz",
+  "mode": "campagne Online",
+  "synopsis": "Oz le méchant"
 }
