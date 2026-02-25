@@ -16,6 +16,7 @@ CREATE TABLE campaigns (
     mode TEXT NOT NULL,
     synopsis TEXT,
     creator_user_id BIGINT NOT NULL REFERENCES users(id),
+    invite_code TEXT NOT NULL UNIQUE,
     is_active BOOLEAN NOT NULL DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -30,10 +31,12 @@ CREATE TABLE campaign_members (
     PRIMARY KEY (campaign_id, user_id),
 
     FOREIGN KEY (campaign_id)
-    REFERENCES campaigns(id),
+    REFERENCES campaigns(id)
+    ON DELETE CASCADE,
 
     FOREIGN KEY (user_id)
     REFERENCES users(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE characters (

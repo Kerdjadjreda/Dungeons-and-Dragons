@@ -25,7 +25,42 @@ const campaignsController = {
 
     async deleteOne(req, res){
 
-    }
+    },
+
+    async joinOne(req, res) {
+        const code = req.body.invite_code;
+        console.log(code);
+        const playerId = req.userId;
+
+        try{
+            const campaign = await campaignsDataMapper.findByInviteCode(code);
+            if(!campaign) {
+                return res.status(404).json( {error: "Code invalide ou campagne inexistante"});
+            }
+            const member = await campaignsDataMapper.addMember({ campaignId: campaign.id, playerId, role: "Joueur" });
+
+            if(!member){
+                return res.status(200).json({ 
+                    campaignId: campaign.id, 
+                    joined: false, 
+                    alreadyMember: true,
+                    message: "Ce joueur fait déjà parti de cette campagne."
+                });
+            }
+            return res.status(200).json({ 
+                campaignId: campaign.id, 
+                joined: true, 
+                member })
+
+            
+        } catch(error){
+            if (error.message.includes("déjà membre")){
+                return res.status(409).json({ error: error.message });
+            }
+            console.log("ERREUR INTERNE", error);
+            return res.status(500).json({ error: "Erreur liée au serveur" });
+        }
+    },
 
 
 

@@ -6,8 +6,8 @@ POST http://localhost:3000/users/register
 content-type: application/json
 
 {
-  "email": "anduin@gmail.fr",
-  "username": "Anduin",
+  "email": "matrix@gmail.fr",
+  "username": "neo",
   "password": "test"
 }
 
@@ -16,23 +16,41 @@ POST http://localhost:3000/users/login
 content-type: application/json
 
 {
-  "username": "Thrall",
+  "username": "neo",
   "password": "test"
 }
 
 ###
 
 GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NTkyOTcsImV4cCI6MTc3MTk2NjQ5N30.m0u806qwOyKL31YvUtOPEFGJGAjFHI_-Zv0MgnoP2wQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNDM0MzcsImV4cCI6MTc3MjA1MDYzN30.2r2FUY7hFO2ybK0bE6Hkf19eeerGQ7yfmUxrs37eQQs
 
 ###
 
 POST http://localhost:3000/campaigns
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJUaHJhbGwiLCJpYXQiOjE3NzE5NTkyOTcsImV4cCI6MTc3MTk2NjQ5N30.m0u806qwOyKL31YvUtOPEFGJGAjFHI_-Zv0MgnoP2wQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNDM0MzcsImV4cCI6MTc3MjA1MDYzN30.2r2FUY7hFO2ybK0bE6Hkf19eeerGQ7yfmUxrs37eQQs
 content-type: application/json
 
 {
-  "camp_name": "La guerre de Oz",
-  "mode": "campagne Online",
-  "synopsis": "Oz le méchant"
+  "camp_name": "La puissance",
+  "mode": "campagne Physique",
+  "synopsis": "azeaze"
+}
+
+### tentative avec un mauvais code invitation
+POST http://localhost:3000/campaigns/join
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwidXNlcm5hbWUiOiJBbmR1aW4iLCJpYXQiOjE3NzIwNDIxOTAsImV4cCI6MTc3MjA0OTM5MH0.AeuHeN3JtlB7ZyYX0M5sMxd-CBcaVCXExnGSKoXsMgw
+content-type: application/json
+
+{
+  "invite_code": "AAAAA"
+}
+
+### tentative avec un bon code invitation
+POST http://localhost:3000/campaigns/join
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNDM0MzcsImV4cCI6MTc3MjA1MDYzN30.2r2FUY7hFO2ybK0bE6Hkf19eeerGQ7yfmUxrs37eQQs
+content-type: application/json
+
+{
+  "invite_code": "UYK8SIAE"
 }
