@@ -6,8 +6,8 @@ POST http://localhost:3000/users/register
 content-type: application/json
 
 {
-  "email": "matrix@gmail.fr",
-  "username": "neo",
+  "email": "blizzard@gmail.fr",
+  "username": "thrall",
   "password": "test"
 }
 
@@ -16,11 +16,11 @@ POST http://localhost:3000/users/login
 content-type: application/json
 
 {
-  "username": "neo",
+  "username": "thrall",
   "password": "test"
 }
 
 ###
 
 GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNjQwNTUsImV4cCI6MTc3MjA3MTI1NX0.Mhe9T7ARATIzlDSHIxdHTZM3qnCkAxif2dRLw4FD5sA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIxMTEzNDcsImV4cCI6MTc3MjExODU0N30.kmSKamfJWevARcBKfQm8VbpgLkkfXTlGh9TP0sZNFjI

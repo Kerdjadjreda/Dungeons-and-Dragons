@@ -1,7 +1,7 @@
 
 ### créer une campagne
 POST http://localhost:3000/campaigns
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNDM0MzcsImV4cCI6MTc3MjA1MDYzN30.2r2FUY7hFO2ybK0bE6Hkf19eeerGQ7yfmUxrs37eQQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIxMTEzNDcsImV4cCI6MTc3MjExODU0N30.kmSKamfJWevARcBKfQm8VbpgLkkfXTlGh9TP0sZNFjI
 content-type: application/json
 
 {
@@ -12,7 +12,7 @@ content-type: application/json
 
 ### tentative avec un mauvais code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwidXNlcm5hbWUiOiJBbmR1aW4iLCJpYXQiOjE3NzIwNDIxOTAsImV4cCI6MTc3MjA0OTM5MH0.AeuHeN3JtlB7ZyYX0M5sMxd-CBcaVCXExnGSKoXsMgw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMTM5NDksImV4cCI6MTc3MjEyMTE0OX0.eUbQ3E5ughSsmlgH7HskgXcKpUKpWfIjk7Fv7Z54XIw
 content-type: application/json
 
 {
@@ -21,21 +21,21 @@ content-type: application/json
 
 ### tentative avec un bon code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNjQwNTUsImV4cCI6MTc3MjA3MTI1NX0.Mhe9T7ARATIzlDSHIxdHTZM3qnCkAxif2dRLw4FD5sA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMTM5NDksImV4cCI6MTc3MjEyMTE0OX0.eUbQ3E5ughSsmlgH7HskgXcKpUKpWfIjk7Fv7Z54XIw
 content-type: application/json
 
 {
-  "invite_code": "UYK8SIAE"
+  "invite_code": "UBFMH6RM"
 }
 
 ###
 POST http://localhost:3000/campaigns/1/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNjQwNTUsImV4cCI6MTc3MjA3MTI1NX0.Mhe9T7ARATIzlDSHIxdHTZM3qnCkAxif2dRLw4FD5sA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMTM5NDksImV4cCI6MTc3MjEyMTE0OX0.eUbQ3E5ughSsmlgH7HskgXcKpUKpWfIjk7Fv7Z54XIw
 content-type: application/json
 
 { 
-  "char_name": "Akaban", 
-  "race": "mort-vivant", 
+  "char_name": "pazeaorde", 
+  "race": "Orc", 
   "char_class": "priest", 
   "exp": 120, 
   "hp": 450, 

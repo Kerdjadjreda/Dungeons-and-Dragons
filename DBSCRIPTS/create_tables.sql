@@ -15,7 +15,7 @@ CREATE TABLE campaigns (
     camp_name TEXT NOT NULL,
     mode TEXT NOT NULL,
     synopsis TEXT,
-    creator_user_id BIGINT NOT NULL REFERENCES users(id),
+    creator_user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     invite_code TEXT NOT NULL UNIQUE,
     is_active BOOLEAN NOT NULL DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -65,17 +65,21 @@ CREATE TABLE characters (
 
 
     FOREIGN KEY(user_id)
-    REFERENCES users(id),
+    REFERENCES users(id) ON DELETE CASCADE,
 
     FOREIGN KEY (campaign_id)
-    REFERENCES campaigns(id),
+    REFERENCES campaigns(id) ON DELETE CASCADE,
 
     FOREIGN KEY (campaign_id, user_id)
-    REFERENCES campaign_members(campaign_id, user_id)
+    REFERENCES campaign_members(campaign_id, user_id) ON DELETE CASCADE
 );
 
 CREATE UNIQUE INDEX uniq_alive_char_name_per_campaign
 ON characters (campaign_id, char_name)
+WHERE is_dead = false;
+
+CREATE UNIQUE INDEX uniq_alive_character_per_user_per_campaign
+ON characters (campaign_id, user_id)
 WHERE is_dead = false;
 
 CREATE TABLE items (
@@ -95,10 +99,10 @@ CREATE TABLE characters_items (
     PRIMARY KEY (character_id, item_id),
 
     FOREIGN KEY (character_id)
-    REFERENCES characters(id),
+    REFERENCES characters(id) ON DELETE CASCADE,
 
     FOREIGN KEY (item_id)
-    REFERENCES items(id)
+    REFERENCES items(id) ON DELETE CASCADE
 );
 
 CREATE TABLE monster_templates (
@@ -124,7 +128,7 @@ CREATE TABLE combat_sessions (
     round_number INT NOT NULL DEFAULT 0,
 
     FOREIGN KEY (campaign_id) 
-    REFERENCES campaigns(id)
+    REFERENCES campaigns(id) ON DELETE CASCADE
 );
 
 CREATE TABLE instanced_entity (
@@ -145,10 +149,10 @@ CREATE TABLE instanced_entity (
     exp_delta INT NOT NULL DEFAULT 0,
 
     FOREIGN KEY (character_id)
-    REFERENCES characters(id),
+    REFERENCES characters(id) ON DELETE CASCADE,
 
     FOREIGN KEY (combat_session_id)
-    REFERENCES combat_sessions(id),
+    REFERENCES combat_sessions(id) ON DELETE CASCADE,
 
     FOREIGN KEY (monster_template_id)
     REFERENCES monster_templates(id),
@@ -172,7 +176,7 @@ CREATE TABLE entity_effects (
     rounds_remaining INT NOT NULL DEFAULT 0,
     
     FOREIGN KEY (instanced_entity_id)
-    REFERENCES instanced_entity(id)
+    REFERENCES instanced_entity(id) ON DELETE CASCADE
 );
 
 COMMIT;
