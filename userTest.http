@@ -1,0 +1,26 @@
+GET http://localhost:3000/
+
+###
+
+POST http://localhost:3000/users/register
+content-type: application/json
+
+{
+  "email": "matrix@gmail.fr",
+  "username": "neo",
+  "password": "test"
+}
+
+###
+POST http://localhost:3000/users/login
+content-type: application/json
+
+{
+  "username": "neo",
+  "password": "test"
+}
+
+###
+
+GET http://localhost:3000/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNjQwNTUsImV4cCI6MTc3MjA3MTI1NX0.Mhe9T7ARATIzlDSHIxdHTZM3qnCkAxif2dRLw4FD5sA

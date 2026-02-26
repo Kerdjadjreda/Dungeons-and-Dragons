@@ -1,32 +1,5 @@
-GET http://localhost:3000/
 
-###
-
-POST http://localhost:3000/users/register
-content-type: application/json
-
-{
-  "email": "matrix@gmail.fr",
-  "username": "neo",
-  "password": "test"
-}
-
-###
-POST http://localhost:3000/users/login
-content-type: application/json
-
-{
-  "username": "neo",
-  "password": "test"
-}
-
-###
-
-GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNDM0MzcsImV4cCI6MTc3MjA1MDYzN30.2r2FUY7hFO2ybK0bE6Hkf19eeerGQ7yfmUxrs37eQQs
-
-###
-
+### créer une campagne
 POST http://localhost:3000/campaigns
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNDM0MzcsImV4cCI6MTc3MjA1MDYzN30.2r2FUY7hFO2ybK0bE6Hkf19eeerGQ7yfmUxrs37eQQs
 content-type: application/json
@@ -48,9 +21,30 @@ content-type: application/json
 
 ### tentative avec un bon code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNDM0MzcsImV4cCI6MTc3MjA1MDYzN30.2r2FUY7hFO2ybK0bE6Hkf19eeerGQ7yfmUxrs37eQQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNjQwNTUsImV4cCI6MTc3MjA3MTI1NX0.Mhe9T7ARATIzlDSHIxdHTZM3qnCkAxif2dRLw4FD5sA
 content-type: application/json
 
 {
   "invite_code": "UYK8SIAE"
 }
+
+###
+POST http://localhost:3000/campaigns/1/characters
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIwNjQwNTUsImV4cCI6MTc3MjA3MTI1NX0.Mhe9T7ARATIzlDSHIxdHTZM3qnCkAxif2dRLw4FD5sA
+content-type: application/json
+
+{ 
+  "char_name": "Akaban", 
+  "race": "mort-vivant", 
+  "char_class": "priest", 
+  "exp": 120, 
+  "hp": 450, 
+  "mana": 1700, 
+  "gold": 30, 
+  "strength": 3, 
+  "constitution": 4, 
+  "dexterity": 2, 
+  "intelligence": 10, 
+  "wisdom": 6, 
+  "charisma": 10 
+  }
