@@ -61,7 +61,13 @@ const campaignsController = {
             return res.status(500).json({ error: "Erreur liée au serveur" });
         }
     },
+    
+    async getUserCampaigns(req, res) {
+        const userId = req.userId;
 
+        const campaignsList = await campaignsDataMapper.getAllCampaignsById(userId);
+        return res.json({ campaignsList });
+    }
 
 
 

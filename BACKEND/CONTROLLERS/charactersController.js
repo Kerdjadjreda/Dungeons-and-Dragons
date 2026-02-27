@@ -57,7 +57,38 @@ const charactersController = {
                 return res.status(500).json( { error: "Erreur liée au serveur" });
             }
         
+    },
 
+    async getMyCharacter(req, res){
+        const userId = req.userId;
+        const campaignId = Number(req.params.campaignId);
+
+        try{
+            const myCharacters = await charactersDataMapper.getMyCharacter(userId, campaignId);
+        // si je n'ai aucun personnage je renvoi une erreur.
+            if(!myCharacters.length === 0){
+                return res.status(404).json({ error: "Aucun personnage n'a été trouvé"});
+        }
+            return res.status(200).json({ myCharacters });
+        } catch(error){
+            console.error(error);
+            return res.status(500).json ({ error: "Erreur liée au serveur" });
+        }
+
+    },
+
+    async getAllCharacters(req, res){
+        const campaignId = Number(req.params.campaignId);
+
+        try{
+            const characters = await charactersDataMapper.getCharactersById(campaignId);
+            return res.status(200).json({ characters });
+            
+        } catch(error){
+            console.error(error)
+            return res.status(500).json({error: "Erreur liée au serveur"});
+        }
+        
     }
 }
 

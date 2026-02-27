@@ -1,18 +1,25 @@
+### avoir la liste des campagnes par utilisateur
+GET http://localhost:3000/campaigns
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMjAxNTMsImV4cCI6MTc3MjEyNzM1M30.mkBWuHFR9ZqU3PvvzfRHwPF0JV8EJR33Lbc2FFRiiSU
+content-type: application/json
+
+###
+GET http://localhost:3000/campaigns/1/characters/me
 
 ### créer une campagne
 POST http://localhost:3000/campaigns
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwidXNlcm5hbWUiOiJuZW8iLCJpYXQiOjE3NzIxMTEzNDcsImV4cCI6MTc3MjExODU0N30.kmSKamfJWevARcBKfQm8VbpgLkkfXTlGh9TP0sZNFjI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMjAxNTMsImV4cCI6MTc3MjEyNzM1M30.mkBWuHFR9ZqU3PvvzfRHwPF0JV8EJR33Lbc2FFRiiSU
 content-type: application/json
 
 {
-  "camp_name": "La puissance",
-  "mode": "campagne Physique",
-  "synopsis": "azeaze"
+  "camp_name": "Mozart le fauve",
+  "mode": "campagne en ligne",
+  "synopsis": "le tigre"
 }
 
 ### tentative avec un mauvais code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMTM5NDksImV4cCI6MTc3MjEyMTE0OX0.eUbQ3E5ughSsmlgH7HskgXcKpUKpWfIjk7Fv7Z54XIw
+Authorization: Bearer token
 content-type: application/json
 
 {
@@ -21,22 +28,22 @@ content-type: application/json
 
 ### tentative avec un bon code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMTM5NDksImV4cCI6MTc3MjEyMTE0OX0.eUbQ3E5ughSsmlgH7HskgXcKpUKpWfIjk7Fv7Z54XIw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
 content-type: application/json
 
 {
-  "invite_code": "UBFMH6RM"
+  "invite_code": "F9YFRU6H"
 }
 
 ###
-POST http://localhost:3000/campaigns/1/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMTM5NDksImV4cCI6MTc3MjEyMTE0OX0.eUbQ3E5ughSsmlgH7HskgXcKpUKpWfIjk7Fv7Z54XIw
+POST http://localhost:3000/campaigns/2/characters
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
 content-type: application/json
 
 { 
-  "char_name": "pazeaorde", 
-  "race": "Orc", 
-  "char_class": "priest", 
+  "char_name": "Gibson", 
+  "race": "taurren", 
+  "char_class": "paladin", 
   "exp": 120, 
   "hp": 450, 
   "mana": 1700, 
@@ -48,3 +55,13 @@ content-type: application/json
   "wisdom": 6, 
   "charisma": 10 
   }
+
+###
+GET http://localhost:3000/campaigns/1/characters/me 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
+content-type: application/json
+
+###
+GET http://localhost:3000/campaigns/1/characters
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
+content-type: application/json

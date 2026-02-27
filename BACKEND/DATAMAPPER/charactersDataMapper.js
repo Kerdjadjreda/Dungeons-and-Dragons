@@ -35,6 +35,27 @@ const charactersDataMapper = {
         const result = await pool.query(sqlQuery, charInfos);
         return result.rows[0];
 
+    },
+
+    async getMyCharacter(userId, campaignId){
+            const result = await pool.query(`SELECT c.*, u.username 
+                                             FROM characters c
+                                             JOIN users u ON u.id = c.user_id
+                                             WHERE c.user_id = $1
+                                             AND c.campaign_id = $2`, [userId, campaignId]);
+            return result.rows;
+
+
+    },
+
+    async getCharactersById(campaignId){
+        const result = await pool.query(`SELECT c.id, c.char_name, c.race, c.char_class, u.username
+                                        FROM characters c
+                                        JOIN users u ON u.id = c.user_id
+                                        WHERE c.campaign_id = $1
+                                        AND c.is_dead = false`, [campaignId]);
+        return result.rows;
+
     }
 
 }

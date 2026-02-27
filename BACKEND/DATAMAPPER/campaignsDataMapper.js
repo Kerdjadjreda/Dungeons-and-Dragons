@@ -52,7 +52,7 @@ const campaignsDataMapper = {
   async countCreatedCampaignByUser(userId) {
     const result = await pool.query(
       `SELECT COUNT(*) FROM campaigns
-                                        WHERE creator_user_id = $1`,
+       WHERE creator_user_id = $1`,
       [userId],
     );
 
@@ -70,12 +70,24 @@ const campaignsDataMapper = {
   async addMember({ campaignId, playerId, role }) {
     const result = await pool.query(
       `INSERT INTO campaign_members (campaign_id, user_id, role, joined_at)
-                                            VALUES ($1, $2, $3, NOW()) 
-                                            ON CONFLICT (campaign_id, user_id) DO NOTHING 
-                                            RETURNING*;`,
+       VALUES ($1, $2, $3, NOW()) 
+       ON CONFLICT (campaign_id, user_id) DO NOTHING 
+       RETURNING*;`,
       [campaignId, playerId, role],
     );
     return result.rows[0];
+  },
+
+  async getAllCampaignsById(userId) {
+    const result = await pool.query(
+      `SELECT id, camp_name, mode, synopsis, created_at, cm.role, cm.joined_at
+       FROM campaigns 
+       JOIN campaign_members cm ON cm.campaign_id = campaigns.id
+       WHERE cm.user_id=$1
+       ORDER BY campaigns.created_at DESC`,
+      [userId],
+    );
+    return result.rows;
   },
 };
 
