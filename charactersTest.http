@@ -1,0 +1,2 @@
+GET http://localhost:3000/characters/1/items
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzA3NzgyNCwiZXhwIjoxNzczMDg1MDI0fQ.417cmvKXMJfl3jGmdZOEmj2bkq2iDrtHxJJD6TMRxVc

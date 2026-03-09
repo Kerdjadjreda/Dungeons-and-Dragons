@@ -2,7 +2,7 @@ const pool = require("../SERVICES/dbPool");
 
 const charactersDataMapper = {
 
-    async createCharacters(
+    async createOneCharacter(
             userId, 
             campaignId, 
             { char_name, 
@@ -56,6 +56,15 @@ const charactersDataMapper = {
                                         AND c.is_dead = false`, [campaignId]);
         return result.rows;
 
+    },
+
+    // je récupère toutes les lignes de la table items et de la pivot characters_items
+    async getItemListByCharacterId(characterId){
+        const result = await pool.query(`SELECT i.id, i.item_name, i.effect_type, i.effect_value, ci.quantity, ci.is_equipped 
+                                         FROM items i
+                                         JOIN characters_items ci ON ci.item_id = i.id
+                                         WHERE ci.character_id = $1`, [characterId]);
+        return result.rows;
     }
 
 }

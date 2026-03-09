@@ -19,7 +19,7 @@ content-type: application/json
 
 ### tentative avec un mauvais code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIxMDUwMiwiZXhwIjoxNzcyMjE3NzAyfQ.lut3m6DN8CjdTNQYRPsVqkoJvNN9Ikk5vGS9c-O1ZaE
 content-type: application/json
 
 {
@@ -37,7 +37,7 @@ content-type: application/json
 
 ###
 POST http://localhost:3000/campaigns/2/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIxMDUwMiwiZXhwIjoxNzcyMjE3NzAyfQ.lut3m6DN8CjdTNQYRPsVqkoJvNN9Ikk5vGS9c-O1ZaE
 content-type: application/json
 
 { 
@@ -58,10 +58,10 @@ content-type: application/json
 
 ###
 GET http://localhost:3000/campaigns/1/characters/me 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIxMDUwMiwiZXhwIjoxNzcyMjE3NzAyfQ.lut3m6DN8CjdTNQYRPsVqkoJvNN9Ikk5vGS9c-O1ZaE
 content-type: application/json
 
 ###
 GET http://localhost:3000/campaigns/1/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIxMDUwMiwiZXhwIjoxNzcyMjE3NzAyfQ.lut3m6DN8CjdTNQYRPsVqkoJvNN9Ikk5vGS9c-O1ZaE
 content-type: application/json

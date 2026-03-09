@@ -5,7 +5,8 @@ const session = require('express-session');
 const app = express();
 
 const userRouter = require("./ROUTER/userRouter.js")
-const campaignsRouter = require("./ROUTER/campaignsRouter.js")
+const campaignsRouter = require("./ROUTER/campaignsRouter.js");
+const charactersRouter = require('./ROUTER/charactersRouter.js');
 
 // J'utilise le moteur de rendu EJS
 app.set('view engine', 'ejs');
@@ -20,8 +21,9 @@ app.use(express.urlencoded({ extended: true }));
   //saveUninitialized: true,
   //cookie: { secure: false }
 //}))
-app.use("/campaigns", campaignsRouter);
 app.use("/users", userRouter);
+app.use("/campaigns", campaignsRouter);
+app.use("/characters", charactersRouter);
 app.use(router);
 
 module.exports = app;

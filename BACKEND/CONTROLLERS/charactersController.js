@@ -21,7 +21,7 @@ const charactersController = {
             wisdom, 
             charisma } = req.body;
         try{
-            const character = await charactersDataMapper.createCharacters(
+            const character = await charactersDataMapper.createOneCharacter(
                 userId, 
                 campaignId, 
                 { char_name, 
@@ -89,7 +89,21 @@ const charactersController = {
             return res.status(500).json({error: "Erreur liée au serveur"});
         }
         
+    },
+
+    async getCharacterItems(req, res){
+        const characterId = Number(req.params.characterId);
+        try{
+            // ici je veux pouvoir retourner la liste des objets d'un personnage.
+            const itemList = await charactersDataMapper.getItemListByCharacterId(characterId);
+            return res.status(200).json({ itemList });
+        }catch(error){
+            console.error(error);
+            return res.status(500).json({ error: "Erreur liée au serveur"});
+
+        }
     }
+
 }
 
 
