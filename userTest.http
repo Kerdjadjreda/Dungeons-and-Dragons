@@ -6,8 +6,8 @@ POST http://localhost:3000/users/register
 content-type: application/json
 
 {
-  "email": "ea@gmail.fr",
-  "username": "Sylvanas",
+  "email": "max@gmail.fr",
+  "username": "Max",
   "password": "test"
 }
 
@@ -16,11 +16,11 @@ POST http://localhost:3000/users/login
 content-type: application/json
 
 {
-  "username": "Sylvanas",
+  "username": "Max",
   "password": "test"
 }
 
 ###
 
 GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzA3NzgyNCwiZXhwIjoxNzczMDg1MDI0fQ.417cmvKXMJfl3jGmdZOEmj2bkq2iDrtHxJJD6TMRxVc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc

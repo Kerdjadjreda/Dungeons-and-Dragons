@@ -1,6 +1,6 @@
 ### avoir la liste des campagnes par utilisateur
 GET http://localhost:3000/campaigns
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMjAxNTMsImV4cCI6MTc3MjEyNzM1M30.mkBWuHFR9ZqU3PvvzfRHwPF0JV8EJR33Lbc2FFRiiSU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzE0NTQxMiwiZXhwIjoxNzczMTUyNjEyfQ.qThYy2oEx_iRzQ3hq53kFQsvq2T522LjCerzLVVIQ4o
 content-type: application/json
 
 ###
@@ -8,13 +8,13 @@ GET http://localhost:3000/campaigns/1/characters/me
 
 ### créer une campagne
 POST http://localhost:3000/campaigns
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwidXNlcm5hbWUiOiJ0aHJhbGwiLCJpYXQiOjE3NzIxMjAxNTMsImV4cCI6MTc3MjEyNzM1M30.mkBWuHFR9ZqU3PvvzfRHwPF0JV8EJR33Lbc2FFRiiSU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzE0NTQxMiwiZXhwIjoxNzczMTUyNjEyfQ.qThYy2oEx_iRzQ3hq53kFQsvq2T522LjCerzLVVIQ4o
 content-type: application/json
 
 {
-  "camp_name": "Mozart le fauve",
+  "camp_name": "La caravane de sombrelune",
   "mode": "campagne en ligne",
-  "synopsis": "le tigre"
+  "synopsis": "mouai"
 }
 
 ### tentative avec un mauvais code invitation
@@ -28,16 +28,16 @@ content-type: application/json
 
 ### tentative avec un bon code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIwOTQ3OCwiZXhwIjoxNzcyMjE2Njc4fQ.rajnCZpgU7irwAZlj1FKFNVq7ozAv6uwnXn-aci_FPA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc
 content-type: application/json
 
 {
-  "invite_code": "F9YFRU6H"
+  "invite_code": "OVKHW9U0"
 }
 
 ###
 POST http://localhost:3000/campaigns/2/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIxMDUwMiwiZXhwIjoxNzcyMjE3NzAyfQ.lut3m6DN8CjdTNQYRPsVqkoJvNN9Ikk5vGS9c-O1ZaE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDU2MTYsImV4cCI6MTc3MzE1MjgxNn0.XVdFEmlvwpDxuGea1_ZBfvxBAaF8XMhAgpwWYz5eqt0
 content-type: application/json
 
 { 
@@ -57,11 +57,11 @@ content-type: application/json
   }
 
 ###
-GET http://localhost:3000/campaigns/1/characters/me 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIxMDUwMiwiZXhwIjoxNzcyMjE3NzAyfQ.lut3m6DN8CjdTNQYRPsVqkoJvNN9Ikk5vGS9c-O1ZaE
+GET http://localhost:3000/campaigns/2/characters/me 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc
 content-type: application/json
 
 ###
-GET http://localhost:3000/campaigns/1/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MjIxMDUwMiwiZXhwIjoxNzcyMjE3NzAyfQ.lut3m6DN8CjdTNQYRPsVqkoJvNN9Ikk5vGS9c-O1ZaE
+GET http://localhost:3000/campaigns/2/characters
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc
 content-type: application/json
