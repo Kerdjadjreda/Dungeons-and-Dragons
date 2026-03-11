@@ -102,6 +102,31 @@ const charactersController = {
             return res.status(500).json({ error: "Erreur liée au serveur"});
 
         }
+    },
+
+    async addItems(req, res){
+
+        const characterId = Number(req.params.characterId);
+        const { item_name, item_description, item_category, effect_type, effect_value, quantity } = req.body;
+        try{
+             await charactersDataMapper.addItemsByCharacterId(characterId, { 
+                item_name, 
+                item_description, 
+                item_category, 
+                effect_type, 
+                effect_value,
+                quantity
+             });
+             return res.status(200).json({ message: "L'objet a bien été ajouté à l'inventaire." });
+
+        } catch(error){
+            console.error(error)
+            if(error.code === "23503"){
+                return res.status(400).json({ error: "Personnage inexistant." });
+
+            }
+            return res.status(500).json({ error: "Erreur liée au serveur." });
+        }
     }
 
 }

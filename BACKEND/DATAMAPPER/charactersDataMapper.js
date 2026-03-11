@@ -65,6 +65,40 @@ const charactersDataMapper = {
                                          JOIN characters_items ci ON ci.item_id = i.id
                                          WHERE ci.character_id = $1`, [characterId]);
         return result.rows;
+    },
+
+    // methode pour insérer des objets. puisqu'elle passe par la table pivot, il me faut deux INSERT. et donc une transaction sql
+    async addItemsByCharacterId(characterId, { 
+        item_name, 
+        item_description = null, 
+        item_category, 
+        effect_type = null, 
+        effect_value = null,
+        quantity = 1 }){
+
+            const client = await pool.connect()
+            try{
+                await client.query("BEGIN");
+
+                const insertItem = await client.query(`INSERT INTO items (item_name, item_description, item_category, effect_type, effect_value)
+                    VALUES ($1,$2,$3,$4,$5) 
+                    RETURNING items.id;`, 
+                    [item_name, item_description, item_category, effect_type, effect_value]);
+
+                const itemId = insertItem.rows[0].id;
+                    
+                await client.query(`INSERT INTO characters_items (character_id, item_id, quantity)
+                        VALUES ($1, $2, $3)`, [characterId, itemId, quantity]);
+
+                await client.query("COMMIT");
+
+            } catch (error) {
+                await client.query("ROLLBACK");
+                throw error;
+            } finally {
+                client.release();
+            }
+
     }
 
 }

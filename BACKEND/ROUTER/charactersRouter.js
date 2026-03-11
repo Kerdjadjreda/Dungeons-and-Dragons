@@ -5,7 +5,7 @@ const isConnected = require("../MIDDLEWARES/auth");
 const isCharacterMember = require("../MIDDLEWARES/isCharacterMember");
 
 charactersRouter.get("/:characterId/items", isConnected, isCharacterMember, charactersController.getCharacterItems);
-//charactersRouter.post("/:characterId/items", isConnected, isCharacterMember, charactersController);
+charactersRouter.post("/:characterId/items", isConnected, isCharacterMember, charactersController.addItems);
 //charactersRouter.patch("/:characterId/items/:itemId", isConnected, isCharacterMember, charactersController);
 //charactersRouter.delete("/:characterId/items/:itemId", isConnected, isCharacterMember, charactersController);
 

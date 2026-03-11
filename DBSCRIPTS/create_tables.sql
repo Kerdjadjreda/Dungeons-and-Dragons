@@ -84,9 +84,13 @@ WHERE is_dead = false;
 
 CREATE TABLE items (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
     item_name TEXT NOT NULL,
-    effect_type TEXT NOT NULL,
-    effect_value INT NOT NULL
+    item_description TEXT,
+    item_category TEXT NOT NULL DEFAULT 'divers'
+    CHECK (item_category IN ('divers', 'equipement', 'consommable', 'arme', 'magie')),
+    effect_type TEXT,
+    effect_value INT
 );
 
 CREATE TABLE characters_items (

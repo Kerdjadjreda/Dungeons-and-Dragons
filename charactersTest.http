@@ -1,6 +1,16 @@
 ### ROUTE POUR RECUPERER LES OBJETS D'UN PERSONNAGE
 GET http://localhost:3000/characters/1/items
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxODQxODcsImV4cCI6MTc3MzE5MTM4N30.09u7n3BYuzJ6okUjDcqnYvVnfZWc1MMiSgTq8FEQzPo
 
 ### ROUTE TEST POUR INSERER DES OBJETS DANS L'INVENTAIRE D'UN PERSONNAGE
 POST http://localhost:3000/characters/1/items
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxODQxODcsImV4cCI6MTc3MzE5MTM4N30.09u7n3BYuzJ6okUjDcqnYvVnfZWc1MMiSgTq8FEQzPo
+content-type: application/json
+
+    {
+        "item_name": "plume de griffon",
+        "item_description": "sert à créer des flèches",
+        "item_category": "consommable",
+        "quantity": 5
+
+    }

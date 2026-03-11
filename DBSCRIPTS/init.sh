@@ -23,3 +23,7 @@ export PGDATABASE="$DB_NAME"
 
 # et j'execute tout simplement mon script qui va créer mes tables
 psql -f ./create_tables.sql
+
+psql -f ./SEEDS/seed_monsters.sql
+
+psql -f ./SEEDS/seed_global.sql
