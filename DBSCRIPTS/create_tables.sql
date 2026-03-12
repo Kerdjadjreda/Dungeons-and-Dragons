@@ -135,6 +135,10 @@ CREATE TABLE combat_sessions (
     REFERENCES campaigns(id) ON DELETE CASCADE
 );
 
+CREATE UNIQUE INDEX idx_uniq_active_combat_per_campaign
+ON combat_sessions(campaign_id)
+WHERE is_active = true;
+
 CREATE TABLE instanced_entity (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     

@@ -1,0 +1,8 @@
+
+POST http://localhost:3000/campaigns/2/combat-sessions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzMzMjUzOCwiZXhwIjoxNzczMzM5NzM4fQ.Ve2Yb3qxmZFdocZ-3S7Q0ZNwZvKluLXggyQgH6X_eSU
+Content-Type: application/json
+
+{
+    "title": "Ambuscade mortelle"
+}

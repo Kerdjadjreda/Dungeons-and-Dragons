@@ -89,6 +89,7 @@ const campaignsDataMapper = {
     );
     return result.rows;
   },
+
 };
 
 module.exports = campaignsDataMapper;

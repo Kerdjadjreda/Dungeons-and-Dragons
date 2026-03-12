@@ -28,7 +28,7 @@ content-type: application/json
 
 ### tentative avec un bon code invitation
 POST http://localhost:3000/campaigns/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1IiwidXNlcm5hbWUiOiJKYXgiLCJpYXQiOjE3NzMyNDYzMTcsImV4cCI6MTc3MzI1MzUxN30.oEda4UHnmRXUJMLAdvIHBkUwv8IJdhb5e4SoPIwHkxM
 content-type: application/json
 
 {
@@ -37,15 +37,15 @@ content-type: application/json
 
 ###
 POST http://localhost:3000/campaigns/2/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDU2MTYsImV4cCI6MTc3MzE1MjgxNn0.XVdFEmlvwpDxuGea1_ZBfvxBAaF8XMhAgpwWYz5eqt0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1IiwidXNlcm5hbWUiOiJKYXgiLCJpYXQiOjE3NzMyNDYzMTcsImV4cCI6MTc3MzI1MzUxN30.oEda4UHnmRXUJMLAdvIHBkUwv8IJdhb5e4SoPIwHkxM
 content-type: application/json
 
 { 
-  "char_name": "Gibson", 
-  "race": "taurren", 
-  "char_class": "paladin", 
+  "char_name": "Talkor", 
+  "race": "Humain", 
+  "char_class": "Guerrier", 
   "exp": 120, 
-  "hp": 450, 
+  "hp": 550, 
   "mana": 1700, 
   "gold": 30, 
   "strength": 3, 
@@ -58,10 +58,10 @@ content-type: application/json
 
 ###
 GET http://localhost:3000/campaigns/2/characters/me 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzMyMzU0NCwiZXhwIjoxNzczMzMwNzQ0fQ.H08r-BDg8hf9c-FgsOD7j1Y2gyNcPAYE59BtLLQcanc
 content-type: application/json
 
 ###
 GET http://localhost:3000/campaigns/2/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0IiwidXNlcm5hbWUiOiJNYXgiLCJpYXQiOjE3NzMxNDcyMzAsImV4cCI6MTc3MzE1NDQzMH0.IKzWoKNNLjX9fwVSO54kgMYGnLnQSbfGfwOAjP7EpBc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1IiwidXNlcm5hbWUiOiJKYXgiLCJpYXQiOjE3NzMyNDYzMTcsImV4cCI6MTc3MzI1MzUxN30.oEda4UHnmRXUJMLAdvIHBkUwv8IJdhb5e4SoPIwHkxM
 content-type: application/json

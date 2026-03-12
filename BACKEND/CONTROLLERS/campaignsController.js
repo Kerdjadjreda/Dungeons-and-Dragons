@@ -67,7 +67,8 @@ const campaignsController = {
 
         const campaignsList = await campaignsDataMapper.getAllCampaignsById(userId);
         return res.json({ campaignsList });
-    }
+    },
+
 
 
 
