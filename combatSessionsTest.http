@@ -6,3 +6,16 @@ Content-Type: application/json
 {
     "title": "Ambuscade mortelle"
 }
+
+### ROUTE POUR AJOUTER LE/LES PERSONNAGES DES JOUEURS A LA SESSION DE COMBAT
+POST http://localhost:3000/combat-sessions/1/characters
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzQzNjUwNSwiZXhwIjoxNzczNDQzNzA1fQ.wDp6t-3GFRGW6ilZj4zeEgl86u9PHh3sgJ1_2IIp0Zw
+Content-Type: application/json
+
+{
+    "participants": [
+        { "characterId": 1, "initiative": 15 },
+        { "characterId": 3, "initiative": 10 }
+    ]
+
+}

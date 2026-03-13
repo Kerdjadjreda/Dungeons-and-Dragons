@@ -173,6 +173,10 @@ CREATE TABLE instanced_entity (
     )
 );
 
+CREATE UNIQUE INDEX uniq_character_per_combat_session 
+ON instanced_entity (combat_session_id, character_id)
+WHERE entity_type = 'character';
+
 CREATE TABLE entity_effects (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     instanced_entity_id BIGINT NOT NULL,
