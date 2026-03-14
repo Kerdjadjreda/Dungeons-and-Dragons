@@ -8,7 +8,7 @@ const combatSessionsController = require("../CONTROLLERS/combatSessionsControlle
 // il me faut un middleware pour charger les infos d'une session de combat et un autre qui ne laisse que le GM modifier une session de combat.
 
 combatSessionsRouter.post('/:combatSessionId/characters', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.addCharacters)
-//combatSessionsRouter.post("/:combatSessionsId/characters", combatSessionsController)
+combatSessionsRouter.post('/:combatSessionId/monsters', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.addMonsters)
 
 
 module.exports = combatSessionsRouter;

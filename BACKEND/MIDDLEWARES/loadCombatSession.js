@@ -17,7 +17,7 @@ const loadCombatSession = async(req, res, next) => {
 
     }catch(error){
         console.error(error);
-        return res.status(500).json({ error: "Erreur liée au serveur. ICIII" });
+        return res.status(500).json({ error: "Erreur liée au serveur." });
 
     }
 

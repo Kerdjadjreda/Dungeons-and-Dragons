@@ -72,6 +72,91 @@ const combatSessionsDataMapper = {
         } finally {
             client.release();
         }
+    },
+
+    async addMonsters(combatSessionId, monsters) {
+        const client = await pool.connect();
+
+        try {
+            await client.query("BEGIN");
+
+            const addedMonsters = [];
+
+            for (const monster of monsters) {
+                const { monsterTemplateId, initiative } = monster;
+
+                const monsterResult = await client.query(
+                 `SELECT
+                  id,
+                  monster_name,
+                  (stat_block ->> 'hit_points')::int AS hp_max
+                  FROM monster_templates
+                  WHERE id = $1`,
+                  [monsterTemplateId]
+                );
+
+                if (monsterResult.rowCount === 0) {
+                    throw new Error(`Le monstre ${monsterTemplateId} n'existe pas.`);
+                }
+
+                const monsterTemplate = monsterResult.rows[0];
+
+                const insertResult = await client.query(
+                    `INSERT INTO instanced_entity (
+                    combat_session_id,
+                    monster_template_id,
+                    entity_type,
+                    hp_max,
+                    current_hp,
+                    initiative,
+                    position,
+                    is_dead
+                    )
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+                    RETURNING *`,
+                    [
+                        combatSessionId,
+                        monsterTemplate.id,
+                        "monster",
+                        monsterTemplate.hp_max,
+                        monsterTemplate.hp_max,
+                        initiative,
+                        0,
+                        false
+                    ]
+                );
+
+                addedMonsters.push(insertResult.rows[0]);
+            }
+
+            const entitiesResult = await client.query(
+                `SELECT id, initiative
+                FROM instanced_entity
+                WHERE combat_session_id = $1
+                ORDER BY initiative DESC, id ASC`,
+                [combatSessionId]
+            );
+
+            let position = 1;
+
+            for (const entity of entitiesResult.rows) {
+                await client.query(
+                `UPDATE instanced_entity
+                SET position = $1
+                WHERE id = $2`,
+                [position, entity.id]
+                );
+                position++;
+            }
+
+            await client.query("COMMIT");
+            return addedMonsters;
+        } catch (error) {
+            await client.query("ROLLBACK");
+            throw error;
+        } finally {
+            client.release();
+        }
     }
 };
 

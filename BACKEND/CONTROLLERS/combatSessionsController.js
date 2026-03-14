@@ -51,6 +51,24 @@ const combatSessionsController = {
       console.error(error)
       return res.status(500).json({ error: "Erreur liée au serveur." });
     }
+  },
+
+  async addMonsters(req, res){
+    const combatSessionId = Number(req.params.combatSessionId);
+    const { monsters } = req.body;
+    console.log("IL SE PASSE QUOI ICI", monsters)
+
+    try{
+      if(!Array.isArray(monsters) || monsters.length === 0){
+        return res.status(400).json({ error: "Veuillez fournir un ou plusieurs monstres." });
+      }
+        const instancedMonsters = await combatSessionsDataMapper.addMonsters(combatSessionId, monsters);
+        return res.status(201).json({ instancedMonsters });
+    } catch(error){
+      console.error(error)
+      return res.status(500).json({ error: "Erreur liée au serveur." });
+    }
+
   }
 
 
