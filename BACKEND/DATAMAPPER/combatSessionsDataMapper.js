@@ -157,6 +157,44 @@ const combatSessionsDataMapper = {
         } finally {
             client.release();
         }
+    },
+
+    async getSessionCombatByPk(combatSessionId){
+
+        const combatSession = await pool.query(`SELECT * FROM combat_sessions WHERE id =$1`, [combatSessionId]);
+
+        const result = await pool.query(`SELECT
+                                            ie.id,
+                                            ie.combat_session_id,
+                                            ie.entity_type,
+                                            ie.character_id,
+                                            ie.monster_template_id,
+                                            ie.current_hp,
+                                            ie.hp_max,
+                                            ie.initiative,
+                                            ie.position,
+                                            ie.is_dead,
+                                            ie.gold_delta,
+                                            ie.exp_delta,
+
+                                            c.char_name,
+                                            c.char_class,
+
+                                            mt.monster_name,
+                                            mt.monster_type
+
+                                            FROM instanced_entity ie
+                                            LEFT JOIN characters c
+                                            ON c.id = ie.character_id
+                                            LEFT JOIN monster_templates mt
+                                            ON mt.id = ie.monster_template_id
+                                            WHERE ie.combat_session_id = $1
+                                            ORDER BY ie.position ASC;`, [combatSessionId]);
+
+        return { combatSession: combatSession.rows[0],
+                 instancesEntities: result.rows
+        };
+
     }
 };
 

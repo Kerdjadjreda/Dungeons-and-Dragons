@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### ROUTE POUR AJOUTER DES ENEMIS DANS UNE SESSIONS DE COMBAT
 POST http://localhost:3000/combat-sessions/1/monsters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzUyNzA5MywiZXhwIjoxNzczNTM0MjkzfQ.o894MQM8CckbN8Oqxee51YDqYUYvgagcIDBCXoz2tZ0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzY5NTY5OSwiZXhwIjoxNzczNzAyODk5fQ.qFLqH6er0tEKr4jeiDfWfF699jirGXCGKNLkUoBtUFA
 Content-Type: application/json
 
 {
@@ -31,3 +31,7 @@ Content-Type: application/json
     ]
 }
 
+### RECPERER UNE SESSION DE COMBAT PAR SON ID
+GET http://localhost:3000/combat-sessions/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzY5NTY5OSwiZXhwIjoxNzczNzAyODk5fQ.qFLqH6er0tEKr4jeiDfWfF699jirGXCGKNLkUoBtUFA
+Content-Type: application/json
