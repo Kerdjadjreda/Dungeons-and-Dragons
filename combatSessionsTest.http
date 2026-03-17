@@ -1,6 +1,6 @@
 
 POST http://localhost:3000/campaigns/2/combat-sessions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzMzMjUzOCwiZXhwIjoxNzczMzM5NzM4fQ.Ve2Yb3qxmZFdocZ-3S7Q0ZNwZvKluLXggyQgH6X_eSU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwidXNlcm5hbWUiOiJUZW1vaW4iLCJpYXQiOjE3NzM3NDUzNTAsImV4cCI6MTc3Mzc1MjU1MH0.9kcJ_8rG-JcW6EofRctKUaIdbZAr8ARg5uYGxVyOcvg
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ### ROUTE POUR AJOUTER LE/LES PERSONNAGES DES JOUEURS A LA SESSION DE COMBAT
 POST http://localhost:3000/combat-sessions/1/characters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzUyNzA5MywiZXhwIjoxNzczNTM0MjkzfQ.o894MQM8CckbN8Oqxee51YDqYUYvgagcIDBCXoz2tZ0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwidXNlcm5hbWUiOiJUZW1vaW4iLCJpYXQiOjE3NzM3NDUzNTAsImV4cCI6MTc3Mzc1MjU1MH0.9kcJ_8rG-JcW6EofRctKUaIdbZAr8ARg5uYGxVyOcvg
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### ROUTE POUR AJOUTER DES ENEMIS DANS UNE SESSIONS DE COMBAT
 POST http://localhost:3000/combat-sessions/1/monsters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzY5NTY5OSwiZXhwIjoxNzczNzAyODk5fQ.qFLqH6er0tEKr4jeiDfWfF699jirGXCGKNLkUoBtUFA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwidXNlcm5hbWUiOiJUZW1vaW4iLCJpYXQiOjE3NzM3NDUzNTAsImV4cCI6MTc3Mzc1MjU1MH0.9kcJ_8rG-JcW6EofRctKUaIdbZAr8ARg5uYGxVyOcvg
 Content-Type: application/json
 
 {
@@ -33,5 +33,5 @@ Content-Type: application/json
 
 ### RECPERER UNE SESSION DE COMBAT PAR SON ID
 GET http://localhost:3000/combat-sessions/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzY5NTY5OSwiZXhwIjoxNzczNzAyODk5fQ.qFLqH6er0tEKr4jeiDfWfF699jirGXCGKNLkUoBtUFA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwidXNlcm5hbWUiOiJUZW1vaW4iLCJpYXQiOjE3NzM3NDUzNTAsImV4cCI6MTc3Mzc1MjU1MH0.9kcJ_8rG-JcW6EofRctKUaIdbZAr8ARg5uYGxVyOcvg
 Content-Type: application/json
