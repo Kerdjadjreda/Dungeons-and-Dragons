@@ -2,6 +2,7 @@ const express = require('express');
 const router = require('./ROUTER/router.js')
 const path = require('path');
 const session = require('express-session');
+const cors = require("cors");
 const app = express();
 
 const userRouter = require("./ROUTER/userRouter.js")
@@ -22,7 +23,15 @@ app.use(express.urlencoded({ extended: true }));
   //saveUninitialized: true,
   //cookie: { secure: false }
 //}))
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+  ],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type,Authorization", // Specify the allowed <headers></headers>
+};
 
+app.use(cors(corsOptions))
 app.use("/combat-sessions", combatSessionsRouter);
 app.use("/users", userRouter);
 app.use("/campaigns", campaignsRouter);

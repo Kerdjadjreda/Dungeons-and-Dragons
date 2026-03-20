@@ -80,6 +80,10 @@ const combatSessionsController = {
       console.error(error)
       return res.status(500).json({ error: "Erreur liée au serveur" });
     }
+  },
+
+  async updateHpEntity(){
+    
   }
 
 
