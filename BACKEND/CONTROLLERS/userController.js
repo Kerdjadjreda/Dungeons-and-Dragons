@@ -45,9 +45,15 @@ const userController = {
                 // il faut que je puisse générer et renvoyer un jwt avec l'id et le username si ça match
                 const payload = { userId: user.id, username: user.username };
                 const token = signToken(payload);
-                return res.json({ 
-                    token, 
+                res.cookie("token", token, {
+                    httpOnly: true,
+                    secure: false, //Vue que je ne suis pas en HTTS, je ne sais pas s'il est a false par défaut donc dans le doute...
+                    sameSite: "lax",
+                    maxAge: 1000 * 60 * 60 * 24,
+                })
+                return res.json({  
                     user: { userId: user.id, username: user.username } });
+
             } else{
                 return res.status(401).json({ error: "Mot de passe incorrect." });
             }
@@ -59,8 +65,19 @@ const userController = {
 
     async me (req, res) {
         // console.log(req.userId)
-        const user = await userDatamapper.findById(req.userId);
-        res.json(user);
+        try{
+            const token = req.cookies.token;
+            if(!token){
+                return res.status(401).json({ error: "Aucune authentification." });
+            }
+            const user = await userDatamapper.findById(req.userId);
+            res.json(token, user);
+
+        }catch(error){
+            console.error(error)
+                return res.status(500).json({ error: "Erreur liée au serveur." });
+            
+        }
     }
 
 };
