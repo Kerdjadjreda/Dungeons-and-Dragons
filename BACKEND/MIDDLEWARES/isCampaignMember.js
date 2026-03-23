@@ -8,13 +8,16 @@ async function isCampaignMember(req, res, next) {
     const campaignId = Number(req.params.campaignId);
     //je vérifie s'il y a une ligne correspondante aux valeurs que je passe.
     const result = await pool.query(
-      "SELECT 1 FROM campaign_members WHERE campaign_id = $1 AND user_id = $2",
+      "SELECT * FROM campaign_members WHERE campaign_id = $1 AND user_id = $2",
       [campaignId, userId]
     );
     // si aucune ligne m'est retournée, alors il n'est tout simplement pas membre de la campagne, donc je traite l'erreur.
     if (result.rowCount === 0) {
       return res.status(403).json({ error: "Vous n'êtes pas membre de cette campagne." });
     }
+
+      // Obligé de modifier ce middleware pour récupérer la ligne entière. Le rôle me sera obligatoire au front lors du call api.
+    req.campaignMember = result.rows[0];
     // et si tout se passe bien, je passe la main au controller.
     return next();
   } catch (error) {

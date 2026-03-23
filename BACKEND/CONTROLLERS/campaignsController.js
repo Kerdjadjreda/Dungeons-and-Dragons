@@ -23,7 +23,7 @@ const campaignsController = {
             }
     },
 
-    async getOne(){
+    async getOne(req, res){
         const userId = req.userId;
         const campaignId = req.params.campaignId;
         try{
