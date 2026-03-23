@@ -5,12 +5,12 @@ const campaignsController = {
     async createOne(req, res) {
         const { camp_name, mode, synopsis } = req.body;
         // console.log("tesssssssst alloooooo", req.userId)
-        const countCampaigns = await campaignsDataMapper.countCreatedCampaignByUser(req.userId);
-        if(countCampaigns >= 3){
-            return res.status(403).json({ error: "Nombre maximum de campagnes atteint."});
+        try{
+            const countCampaigns = await campaignsDataMapper.countCreatedCampaignByUser(req.userId);
+            if(countCampaigns >= 2){
+                return res.status(403).json({ error: "La limite de parties actives en tant que maitre du jeu a été atteint (2 max)."});
         }
 
-        try{
             const newCampaign = await campaignsDataMapper.createOne({ 
                 camp_name, 
                 mode, 
@@ -29,13 +29,17 @@ const campaignsController = {
 
     async joinOne(req, res) {
         const code = req.body.invite_code;
-        console.log(code);
         const playerId = req.userId;
 
         try{
+           const countCampaignsJoined = await campaignsDataMapper.countJoinedCampaignByUser(playerId);
+            if(countCampaignsJoined >= 2){
+                return res.status(403).json({ error: "La limite de parties actives en tant que joueur a été atteint (2 max)."})
+            }
             const campaign = await campaignsDataMapper.findByInviteCode(code);
+
             if(!campaign) {
-                return res.status(404).json( {error: "Code invalide ou campagne inexistante"});
+                return res.status(403).json( {error: "Code invalide ou campagne inexistante"});
             }
             const member = await campaignsDataMapper.addMember({ campaignId: campaign.id, playerId, role: "Joueur" });
 

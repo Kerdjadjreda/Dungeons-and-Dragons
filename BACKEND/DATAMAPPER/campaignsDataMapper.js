@@ -51,12 +51,18 @@ const campaignsDataMapper = {
 
   async countCreatedCampaignByUser(userId) {
     const result = await pool.query(
-      `SELECT COUNT(*) FROM campaigns
+      `SELECT COUNT(*) AS total_created FROM campaigns
        WHERE creator_user_id = $1`,
       [userId],
     );
 
-    return Number(result.rows[0].count);
+    return Number(result.rows[0].total_created);
+  },
+
+  async countJoinedCampaignByUser(playerId){
+    const result = await pool.query(`SELECT COUNT(*) AS total_joined FROM campaign_members
+                                     WHERE user_id =$1 AND role= 'Joueur'`, [playerId]);
+    return Number(result.rows[0].total_joined);
   },
 
   async findByInviteCode(code) {
