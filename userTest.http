@@ -16,11 +16,11 @@ POST http://localhost:3000/users/login
 content-type: application/json
 
 {
-  "username": "Temoin",
+  "username": "Sylvanas",
   "password": "test"
 }
 
 ###
 
 GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3MzMyMzU0NCwiZXhwIjoxNzczMzMwNzQ0fQ.H08r-BDg8hf9c-FgsOD7j1Y2gyNcPAYE59BtLLQcanc
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NDI3Mzk4OCwiZXhwIjoxNzc0MjgxMTg4fQ.Z12YQfwBpFNrirRTjxJxE-EMYB9YWBueLAc7iEqmSY0

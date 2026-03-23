@@ -23,6 +23,21 @@ const campaignsController = {
             }
     },
 
+    async getOne(){
+        const userId = req.userId;
+        const campaignId = req.params.campaignId;
+        try{
+            const result = await campaignsDataMapper.findCampaignByPk(userId, campaignId);
+            if(!result.campaign){
+                return res.status(404).json({ error: "Campagne est introuvable." })
+            }
+            return res.status(201).json({ campaign: result.campaign, characters: result.characters });
+        } catch(error){
+            console.error(error)
+            return res.status(500).json({ error: "Erreur liée au serveur." });
+        }
+    },
+
     async deleteOne(req, res){
 
     },

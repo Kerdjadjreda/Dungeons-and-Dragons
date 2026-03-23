@@ -96,6 +96,28 @@ const campaignsDataMapper = {
     return result.rows;
   },
 
+  async findCampaignByPk(userId, campaignId) {
+    const campaignResult = await pool.query(
+      `SELECT c.*, cm.joined_at, cm.role
+      FROM campaigns c
+      JOIN campaign_members cm ON cm.campaign_id = c.id
+      WHERE cm.user_id = $1 AND c.id = $2`,
+      [userId, campaignId]
+    );
+
+    const charactersResult = await pool.query(
+      `SELECT *
+      FROM characters
+      WHERE campaign_id = $1`,
+      [campaignId]
+    );
+
+    return {
+      campaign: campaignResult.rows[0],
+      characters: charactersResult.rows,
+    };
+  }
+
 };
 
 module.exports = campaignsDataMapper;

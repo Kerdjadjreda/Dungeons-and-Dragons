@@ -71,7 +71,7 @@ const userController = {
                 return res.status(401).json({ error: "Aucune authentification." });
             }
             const user = await userDatamapper.findById(req.userId);
-            res.json(token, user);
+            res.json(user);
 
         }catch(error){
             console.error(error)

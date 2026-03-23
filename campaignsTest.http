@@ -65,3 +65,8 @@ content-type: application/json
 GET http://localhost:3000/campaigns/2/characters
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1IiwidXNlcm5hbWUiOiJKYXgiLCJpYXQiOjE3NzMyNDYzMTcsImV4cCI6MTc3MzI1MzUxN30.oEda4UHnmRXUJMLAdvIHBkUwv8IJdhb5e4SoPIwHkxM
 content-type: application/json
+
+###
+GET http://localhost:3000/campaigns/2/
+Authorization: Bearer
+Content-Type: application/json
