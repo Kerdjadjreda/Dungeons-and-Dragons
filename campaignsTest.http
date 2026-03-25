@@ -67,6 +67,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1Iiwid
 content-type: application/json
 
 ###
-GET http://localhost:3000/campaigns/2/
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NDI3Mzk4OCwiZXhwIjoxNzc0MjgxMTg4fQ.Z12YQfwBpFNrirRTjxJxE-EMYB9YWBueLAc7iEqmSY0
+GET http://localhost:3000/campaigns/3/
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NDI4MjQwMiwiZXhwIjoxNzc0Mjg5NjAyfQ.TrM6xoTF8jE-tvek0n9HGEABvjynFV2ww8vujL6KQhM
 Content-Type: application/json

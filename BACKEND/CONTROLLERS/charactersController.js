@@ -7,7 +7,8 @@ const charactersController = {
         const userId = req.userId;
         const campaignId = Number(req.params.campaignId);
 
-        const { char_name, 
+        const { 
+            char_name, 
             race, 
             char_class, 
             exp, 
@@ -24,7 +25,8 @@ const charactersController = {
             const character = await charactersDataMapper.createOneCharacter(
                 userId, 
                 campaignId, 
-                { char_name, 
+                { 
+                char_name, 
                 race, 
                 char_class, 
                 exp, 

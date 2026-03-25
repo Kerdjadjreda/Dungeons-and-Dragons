@@ -31,6 +31,14 @@ const campaignsController = {
             if(!result.campaign){
                 return res.status(404).json({ error: "Campagne est introuvable." })
             }
+            const role = result.campaign.role;
+            const userCharacter = result.characters.find(
+                character => character.user_id === userId
+            );
+
+            if(role === "Joueur" && !userCharacter){
+                return res.status(403).json({ error: "Vous devez d'abord créer un personnage." });
+            }
             return res.status(201).json({ campaign: result.campaign, characters: result.characters });
         } catch(error){
             console.error(error)
