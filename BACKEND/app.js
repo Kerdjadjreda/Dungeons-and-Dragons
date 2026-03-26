@@ -10,7 +10,7 @@ const userRouter = require("./ROUTER/userRouter.js")
 const campaignsRouter = require("./ROUTER/campaignsRouter.js");
 const charactersRouter = require('./ROUTER/charactersRouter.js');
 const combatSessionsRouter = require('./ROUTER/combatSessionsRouter.js');
-
+const monstersRouter = require('./ROUTER/monstersRouter.js');
 // J'utilise le moteur de rendu EJS
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/VUE')
@@ -37,6 +37,7 @@ const corsOptions = {
 app.use(cookieParser());
 app.use(cors(corsOptions))
 
+app.use("/monsters", monstersRouter);
 app.use("/combat-sessions", combatSessionsRouter);
 app.use("/users", userRouter);
 app.use("/campaigns", campaignsRouter);
