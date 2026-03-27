@@ -4,8 +4,8 @@ const monstersDataMapper = require('../DATAMAPPER/monstersDataMapper');
 const monstersController = {
     async getAllMonsters(req, res) {
         try{
-            const response = await monstersDataMapper.findAll();
-            return res.status(200).json({ response });
+            const monsters = await monstersDataMapper.findAll();
+            return res.status(200).json({ monsters });
         }catch(error){
             console.error(error)
             return res.status(500).json({ error: "erreur liée au serveur." });
@@ -13,10 +13,10 @@ const monstersController = {
     },
 
     async getOneMonster(req, res) {
-            const monsterId = req.params.monsterId
+            const monsterId = Number(req.params.monsterId)
         try{
-            const response = await monstersDataMapper.findByPk();
-            return res.status(200).json({ response });
+            const monster = await monstersDataMapper.findByPk();
+            return res.status(200).json({ monster });
         } catch(error){
             console.error(error)
         }

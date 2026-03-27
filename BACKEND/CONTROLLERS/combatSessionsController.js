@@ -34,14 +34,14 @@ const combatSessionsController = {
   async addCharacters(req, res){
     const combatSessionId = Number(req.params.combatSessionId);
     const campaignId = Number(req.combatSession.campaign_id);
-    const { participants } = req.body;
-    
+    const { characters } = req.body;
+    console.log("TEST MESSAGE ICIIII", characters);
     try{
-      if(!Array.isArray(participants) || participants.length === 0){
+      if(!Array.isArray(characters) || characters.length === 0){
         return res.status(400).json({ error: "Veuillez fournir une liste de participants." });
       }
 
-    const instancedCharacters = await combatSessionsDataMapper.addCharacters(combatSessionId, campaignId, participants);
+    const instancedCharacters = await combatSessionsDataMapper.addCharacters(combatSessionId, campaignId, characters);
       return res.status(201).json({ instancedCharacters });
 
     }catch(error){
@@ -56,7 +56,7 @@ const combatSessionsController = {
   async addMonsters(req, res){
     const combatSessionId = Number(req.params.combatSessionId);
     const { monsters } = req.body;
-
+console.log("TEEEEEEEEEEEEEEEEEEST MESSAGE ICIIII", monsters);
     try{
       if(!Array.isArray(monsters) || monsters.length === 0){
         return res.status(400).json({ error: "Veuillez fournir un ou plusieurs monstres." });

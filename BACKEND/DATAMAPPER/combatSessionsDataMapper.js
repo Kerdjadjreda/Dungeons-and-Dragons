@@ -83,7 +83,7 @@ const combatSessionsDataMapper = {
             const addedMonsters = [];
 
             for (const monster of monsters) {
-                const { monsterTemplateId, initiative } = monster;
+                const { monsterTemplateId, quantity, initiative } = monster;
 
                 const monsterResult = await client.query(
                  `SELECT
@@ -101,32 +101,33 @@ const combatSessionsDataMapper = {
 
                 const monsterTemplate = monsterResult.rows[0];
 
-                const insertResult = await client.query(
-                    `INSERT INTO instanced_entity (
-                    combat_session_id,
-                    monster_template_id,
-                    entity_type,
-                    hp_max,
-                    current_hp,
-                    initiative,
-                    position,
-                    is_dead
-                    )
-                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-                    RETURNING *`,
-                    [
-                        combatSessionId,
-                        monsterTemplate.id,
-                        "monster",
-                        monsterTemplate.hp_max,
-                        monsterTemplate.hp_max,
+                for(let i = 0; i< quantity; i++){
+                    const insertResult = await client.query(
+                        `INSERT INTO instanced_entity (
+                        combat_session_id,
+                        monster_template_id,
+                        entity_type,
+                        hp_max,
+                        current_hp,
                         initiative,
-                        0,
-                        false
-                    ]
-                );
-
-                addedMonsters.push(insertResult.rows[0]);
+                        position,
+                        is_dead
+                        )
+                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+                        RETURNING *`,
+                        [
+                            combatSessionId,
+                            monsterTemplate.id,
+                            "monster",
+                            monsterTemplate.hp_max,
+                            monsterTemplate.hp_max,
+                            initiative,
+                            0,
+                            false
+                        ]
+                    );
+                    addedMonsters.push(insertResult.rows[0]);
+                }
             }
 
             const entitiesResult = await client.query(
