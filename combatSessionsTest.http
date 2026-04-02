@@ -1,6 +1,6 @@
 
 POST http://localhost:3000/campaigns/2/combat-sessions
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwidXNlcm5hbWUiOiJUZW1vaW4iLCJpYXQiOjE3NzM3NDUzNTAsImV4cCI6MTc3Mzc1MjU1MH0.9kcJ_8rG-JcW6EofRctKUaIdbZAr8ARg5uYGxVyOcvg
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NDg4NjMyMCwiZXhwIjoxNzc0ODkzNTIwfQ.pOu95I84NT_uf9IskpD2ML7ctsswBOGrHyi8GEBCKJ0;
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### ROUTE POUR AJOUTER DES ENEMIS DANS UNE SESSIONS DE COMBAT
 POST http://localhost:3000/combat-sessions/1/monsters
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwidXNlcm5hbWUiOiJUZW1vaW4iLCJpYXQiOjE3NzM3NDUzNTAsImV4cCI6MTc3Mzc1MjU1MH0.9kcJ_8rG-JcW6EofRctKUaIdbZAr8ARg5uYGxVyOcvg
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NDg4NjMyMCwiZXhwIjoxNzc0ODkzNTIwfQ.pOu95I84NT_uf9IskpD2ML7ctsswBOGrHyi8GEBCKJ0;
 Content-Type: application/json
 
 {
@@ -32,6 +32,15 @@ Content-Type: application/json
 }
 
 ### RECPERER UNE SESSION DE COMBAT PAR SON ID
-GET http://localhost:3000/combat-sessions/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2IiwidXNlcm5hbWUiOiJUZW1vaW4iLCJpYXQiOjE3NzM3NDUzNTAsImV4cCI6MTc3Mzc1MjU1MH0.9kcJ_8rG-JcW6EofRctKUaIdbZAr8ARg5uYGxVyOcvg
+GET http://localhost:3000/combat-sessions/26
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NDg4NjMyMCwiZXhwIjoxNzc0ODkzNTIwfQ.pOu95I84NT_uf9IskpD2ML7ctsswBOGrHyi8GEBCKJ0;
 Content-Type: application/json
+
+### TEST POUR RETIRER DES PV A UNE ENTITE
+PATCH http://localhost:3000/combat-sessions/49/entities/71/take-damage
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NTE1MTU2NywiZXhwIjoxNzc1MTU4NzY3fQ.Xy1Q5-jmOZu2PCah4ELJfKQoSYgWZ7VpFN7TjeeJG3E;
+Content-Type: application/json
+
+{
+  "damages": 10
+}

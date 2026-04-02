@@ -112,9 +112,19 @@ const campaignsDataMapper = {
       [campaignId]
     );
 
+    const combatSessionResult = await pool.query(
+    `SELECT *
+     FROM combat_sessions
+     WHERE campaign_id = $1
+     AND is_active = true
+     ORDER BY started_at DESC`,
+    [campaignId]
+  );
+
     return {
       campaign: campaignResult.rows[0],
       characters: charactersResult.rows,
+      combatSessions: combatSessionResult.rows,
     };
   }
 

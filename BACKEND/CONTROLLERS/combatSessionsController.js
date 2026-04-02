@@ -10,7 +10,7 @@ const combatSessionsController = {
 
     try{
       const combatSession = await combatSessionsDataMapper.createOne(campaignId, title);
-      return res.status(201).json({ combatSession });
+      return res.status(201).json(combatSession);
 
     } catch(error){
       if(error.code === "23505"){
@@ -33,9 +33,10 @@ const combatSessionsController = {
 
   async addCharacters(req, res){
     const combatSessionId = Number(req.params.combatSessionId);
+    console.log(combatSessionId)
     const campaignId = Number(req.combatSession.campaign_id);
     const { characters } = req.body;
-    console.log("TEST MESSAGE ICIIII", characters);
+  
     try{
       if(!Array.isArray(characters) || characters.length === 0){
         return res.status(400).json({ error: "Veuillez fournir une liste de participants." });
@@ -56,7 +57,7 @@ const combatSessionsController = {
   async addMonsters(req, res){
     const combatSessionId = Number(req.params.combatSessionId);
     const { monsters } = req.body;
-console.log("TEEEEEEEEEEEEEEEEEEST MESSAGE ICIIII", monsters);
+
     try{
       if(!Array.isArray(monsters) || monsters.length === 0){
         return res.status(400).json({ error: "Veuillez fournir un ou plusieurs monstres." });
@@ -75,15 +76,45 @@ console.log("TEEEEEEEEEEEEEEEEEEST MESSAGE ICIIII", monsters);
     const combatSessionId = Number(req.params.combatSessionId);
     try{
       const combatSession = await combatSessionsDataMapper.getSessionCombatByPk(combatSessionId);
-      return res.status(201).json({ combatSession });
+      return res.status(201).json( combatSession );
     } catch(error){
       console.error(error)
       return res.status(500).json({ error: "Erreur liée au serveur" });
     }
   },
 
-  async updateHpEntity(){
-    
+  async updateHpEntity(req, res){
+    // je vais commencer par modifier simplement la vie des entités instancés au combat pour le MVP sinon je risque de me perdre dans la logique complexe d'un JDR.
+    // je récupère l'id d'une session et l'id d'une entité via les params.
+    const combatSessionId = Number(req.combatSession.id);
+    const entityId = Number(req.params.entityId);
+    const damages = Number(req.body.damages);
+
+    try {
+    if (!Number.isInteger(entityId) || entityId <= 0) {
+      return res.status(400).json({ error: "ID d'entité invalide." });
+    }
+
+    if (!Number.isFinite(damages) || damages <= 0) {
+      return res.status(400).json({ error: "Les dégâts doivent être un nombre positif." });
+    }
+
+    const result = await combatSessionsDataMapper.updateHpEntityByPk(
+      entityId,
+      combatSessionId,
+      damages
+    );
+
+    if (!result) {
+      return res.status(404).json({ error: "L'entité n'existe pas." });
+    }
+
+    return res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Erreur liée au serveur." });
+  }
+
   }
 
 

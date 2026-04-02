@@ -1,4 +1,4 @@
-const { addCharacters } = require("../CONTROLLERS/combatSessionsController");
+const { addCharacters, updateHpEntity } = require("../CONTROLLERS/combatSessionsController");
 const pool = require("../SERVICES/dbPool");
 
 const combatSessionsDataMapper = {
@@ -195,6 +195,16 @@ const combatSessionsDataMapper = {
         return { combatSession: combatSession.rows[0],
                  instancesEntities: result.rows
         };
+
+    },
+    async updateHpEntityByPk(entityId, combatSessionId, damages){
+        const result = await pool.query(`UPDATE instanced_entity
+                                            SET current_hp = GREATEST(0, current_hp - $1),
+                                            is_dead = (current_hp - $1) <= 0
+                                            WHERE combat_session_id = $2
+                                            AND id = $3
+                                            RETURNING *;`,[damages, combatSessionId, entityId]);
+        return result.rows[0];
 
     }
 };
