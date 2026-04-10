@@ -1,12 +1,6 @@
-const rollD20 = (() =>{
-    function roll() {
-        return Math.floor(Math.random() * 20) + 1;
+
+    function rollDice(sides) {
+        return Math.floor(Math.random() * sides) + 1;
     }
 
-    return function () {
-        return roll();
-    };
-})();
-
-
-module.exports = rollD20;
+module.exports = rollDice;

@@ -115,6 +115,71 @@ const combatSessionsController = {
     return res.status(500).json({ error: "Erreur liée au serveur." });
   }
 
+  },
+
+  async attackEntity(req, res){
+    const combatSessionId = Number(req.combatSession.id);
+    const attackerId = Number(req.body.attackerId);
+    const targetId = Number(req.body.targetId);
+    const damageDice = Number(req.body.damageDice);
+    const diceCount = Number(req.body.diceCount);
+
+    try{
+      if(!Number.isInteger(attackerId) || attackerId <= 0) {
+        return res.status(400).json({ error: "L'attaquant est invalide."});
+      }
+      if(!Number.isInteger(targetId) || targetId <= 0) {
+        return res.status(400).json({ error: "La cible est invalide."})
+      }
+
+      const allowedDice = [6, 8, 10, 12];
+      if(!allowedDice.includes(damageDice)) {
+        return res.status(400).json({ error: "Pas cool de tricher. Veuillez choisir parmis les dés fournis."})
+      } if(!Number.isInteger(diceCount) || diceCount <=0 || diceCount > 10){
+        return res.status(400).json({ error: "Nombre de dés invalide. Min 1 max 10."});
+      }
+
+      const dice20Result = rollDice(20);
+
+      if(dice20Result === 1) {
+        return res.status(200).json({
+          success: false,
+          roll: dice20Result,
+          criticalFailure: true,
+          message: "ÉCHEC CRITIQUE !"
+        });
+      }
+
+      if (dice20Result < 10) {
+        return res.status(200).json({
+          success: false,
+          roll: dice20Result,
+          message: "L'attaque a échoué."
+        });
+      }
+
+      let damages = 0;
+
+      for(let i = 0; i <diceCount; i++){
+        damages += rollDice(damageDice);
+      }
+
+      const updatedTarget = await combatSessionsDataMapper.updateHpEntityByPk(targetId, combatSessionId, damages);
+      if (!updatedTarget) {
+        return res.status(404).json({ error: "Cible introuvable dans cette session." });
+      }
+      return res.status(200).json({
+        success: true,
+        roll: dice20Result,
+        damages,
+        target: updatedTarget,
+        message: `L'attaque touche et inflige ${damages} dégâts.`
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erreur liée au serveur." });
+    }
+
   }
 
 

@@ -11,7 +11,9 @@ const combatSessionsController = require("../CONTROLLERS/combatSessionsControlle
 
 combatSessionsRouter.post('/:combatSessionId/characters', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.addCharacters)
 combatSessionsRouter.post('/:combatSessionId/monsters', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.addMonsters)
+combatSessionsRouter.post('/:combatSessionId/attack', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.attackEntity)
 combatSessionsRouter.get('/:combatSessionId', isConnected, loadCombatSession, isCombatSessionMember, combatSessionsController.GetOneSessionCombat)
 combatSessionsRouter.patch('/:combatSessionId/entities/:entityId/take-damage', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.updateHpEntity)
+
 
 module.exports = combatSessionsRouter;
