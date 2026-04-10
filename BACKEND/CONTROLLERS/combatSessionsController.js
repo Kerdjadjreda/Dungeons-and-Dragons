@@ -1,4 +1,5 @@
 const combatSessionsDataMapper = require("../DATAMAPPER/combatSessionsDataMapper");
+const rollDice = require("../SERVICES/dices");
 
 const combatSessionsController = {
 
@@ -158,10 +159,13 @@ const combatSessionsController = {
         });
       }
 
+      const diceResults = [];
       let damages = 0;
 
       for(let i = 0; i <diceCount; i++){
-        damages += rollDice(damageDice);
+        const rolls = rollDice(damageDice);
+        diceResults.push(rolls);
+        damages += rolls;
       }
 
       const updatedTarget = await combatSessionsDataMapper.updateHpEntityByPk(targetId, combatSessionId, damages);
@@ -171,6 +175,7 @@ const combatSessionsController = {
       return res.status(200).json({
         success: true,
         roll: dice20Result,
+        diceResults,
         damages,
         target: updatedTarget,
         message: `L'attaque touche et inflige ${damages} dégâts.`

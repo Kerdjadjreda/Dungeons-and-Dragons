@@ -44,3 +44,14 @@ Content-Type: application/json
 {
   "damages": 10
 }
+###
+POST http://localhost:3000/combat-sessions/49/attack
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NTg0MDczOSwiZXhwIjoxNzc1ODQ3OTM5fQ.GWSvXyuPV5VmDpGQOCbta9hJSu2VhUC4_D-vO6Vwuw0;
+
+{
+  "attackerId": 69,
+  "targetId": 73,
+  "damageDice": 6,
+  "diceCount": 2
+}
