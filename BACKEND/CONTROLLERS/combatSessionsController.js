@@ -172,6 +172,10 @@ const combatSessionsController = {
       if (!updatedTarget) {
         return res.status(404).json({ error: "Cible introuvable dans cette session." });
       }
+
+    if(updatedTarget.current_hp === 0) {
+      return res.status(400).json({ error : "Vous ne pouvez pas attaquer cette cible." })
+    }
       return res.status(200).json({
         success: true,
         roll: dice20Result,

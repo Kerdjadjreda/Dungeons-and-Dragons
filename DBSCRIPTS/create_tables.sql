@@ -130,6 +130,7 @@ CREATE TABLE combat_sessions (
     started_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     ended_at TIMESTAMPTZ NULL,
     round_number INT NOT NULL DEFAULT 0,
+    current_position INT NOT NULL DEFAULT 1,
 
     FOREIGN KEY (campaign_id) 
     REFERENCES campaigns(id) ON DELETE CASCADE

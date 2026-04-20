@@ -23,4 +23,4 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/users/me
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NDI3Mzk4OCwiZXhwIjoxNzc0MjgxMTg4fQ.Z12YQfwBpFNrirRTjxJxE-EMYB9YWBueLAc7iEqmSY0
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzIiwidXNlcm5hbWUiOiJTeWx2YW5hcyIsImlhdCI6MTc3NjAyODA3NSwiZXhwIjoxNzc2MDM1Mjc1fQ.OQl3PFQRCRYlo0rgsBZcRA7_XWZ_rFy2xCVeSXWdxQ8;
