@@ -239,7 +239,20 @@ const combatSessionsDataMapper = {
             combatSession: updateResult.rows[0],
             activeEntity: nextEntity
         };
+    },
+    async endCombatSession(combatSessionId) {
+        const result = await pool.query(
+            `UPDATE combat_sessions
+            SET is_active = false,
+                ended_at = NOW()
+            WHERE id = $1
+            RETURNING *`,
+            [combatSessionId]
+        );
+
+        return result.rows[0];
     }
+
 };
 
 module.exports = combatSessionsDataMapper;

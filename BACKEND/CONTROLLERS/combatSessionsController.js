@@ -204,11 +204,29 @@ const combatSessionsController = {
     } catch(error) {
       return res.status(500).json({ error: "erreur liée au serveur."});
     }
+  },
+
+  async endCombatSession(req, res) {
+    const combatSessionId = Number(req.combatSession.id);
+
+    try {
+      const result = await combatSessionsDataMapper.endCombatSession(combatSessionId);
+
+      if (!result) {
+        return res.status(404).json({ error: "Session introuvable." });
+      }
+
+      return res.status(200).json({
+        message: "Le combat est terminé.",
+        combatSession: result
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erreur serveur." });
+    }
   }
-
-
     
-  };
+};
 
 
   module.exports = combatSessionsController;

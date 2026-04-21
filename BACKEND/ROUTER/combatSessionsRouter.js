@@ -15,6 +15,6 @@ combatSessionsRouter.post('/:combatSessionId/attack', isConnected, loadCombatSes
 combatSessionsRouter.get('/:combatSessionId', isConnected, loadCombatSession, isCombatSessionMember, combatSessionsController.GetOneSessionCombat)
 combatSessionsRouter.patch('/:combatSessionId/entities/:entityId/take-damage', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.updateHpEntity)
 combatSessionsRouter.patch('/:combatSessionId/next-turn', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.nextTurn);
-
+combatSessionsRouter.patch('/:combatSessionId/end', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.endCombatSession);
 
 module.exports = combatSessionsRouter;
