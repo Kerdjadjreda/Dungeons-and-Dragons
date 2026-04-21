@@ -189,6 +189,20 @@ const combatSessionsController = {
       return res.status(500).json({ error: "Erreur liée au serveur." });
     }
 
+  },
+  async nextTurn(req, res){
+    const combatSessionId = Number(req.combatSession.id);
+    const currentPosition = Number(req.combatSession.current_position);
+
+    try {
+      const result = await combatSessionsDataMapper.nextTurn( combatSessionId, currentPosition);
+      if (!result){
+        return res.status(404).json({ error : "Il n'y a aucun personnage en vie dans cette session de combat."});
+      };
+      return res.status(200).json(result);
+    } catch(error) {
+      return res.status(500).json({ error: "erreur liée au serveur."});
+    }
   }
 
 

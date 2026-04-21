@@ -14,6 +14,7 @@ combatSessionsRouter.post('/:combatSessionId/monsters', isConnected, loadCombatS
 combatSessionsRouter.post('/:combatSessionId/attack', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.attackEntity)
 combatSessionsRouter.get('/:combatSessionId', isConnected, loadCombatSession, isCombatSessionMember, combatSessionsController.GetOneSessionCombat)
 combatSessionsRouter.patch('/:combatSessionId/entities/:entityId/take-damage', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.updateHpEntity)
+combatSessionsRouter.patch('/:combatSessionId/next-turn', isConnected, loadCombatSession, isCombatSessionGameMaster, combatSessionsController.nextTurn);
 
 
 module.exports = combatSessionsRouter;

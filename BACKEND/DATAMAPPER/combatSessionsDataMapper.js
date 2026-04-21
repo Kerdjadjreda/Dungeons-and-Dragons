@@ -206,6 +206,39 @@ const combatSessionsDataMapper = {
                                             RETURNING *;`,[damages, combatSessionId, entityId]);
         return result.rows[0];
 
+    },
+
+    async nextTurn(combatSessionId, currentPosition){
+        // Cette methode du dataMapper permet de passer au tour de la prochaine entité vivante dans une session de combat
+        // je commence par récupérer toutes les entités en vie d'une session de combat
+        const entitiesResult = await pool.query(`SELECT id, position, is_dead
+                                                 FROM instanced_entity
+                                                 WHERE combat_session_id = $1
+                                                 AND is_dead = false
+                                                 ORDER BY position ASC`, [combatSessionId]);
+        const aliveEntites = entitiesResult.rows;
+        if(aliveEntites.lenfth === 0){
+            return null;
+        }
+        // je range dans une variable le prochain joueur. je le prends via la première valeur plus élevée que la position du joueur actuel.
+        let nextEntity = aliveEntites.find(entity => Number(entity.position) > currentPosition);
+        let roundIncrement = 0;
+
+        if (!nextEntity){
+            // Si je n'ai pas de valeur plus élevée, je repasse à la première valeur du tableau et je rajoute +1 au tour.
+            nextEntity = aliveEntites[0];
+            roundIncrement = 1;
+        }
+        // et pour finir j'actualise la session de combat par son id. Current position prend la valeur du prochain à jouer, j'incrémente mon tour si besoin.
+        const updateResult = await pool.query(`UPDATE combat_sessions
+                                               SET current_position = $1,
+                                               round_number = round_number + $2
+                                               WHERE id = $3
+                                               RETURNING *`, [nextEntity.position, roundIncrement, combatSessionId]);
+        return { 
+            combatSession: updateResult.rows[0],
+            activeEntity: nextEntity
+        };
     }
 };
 
