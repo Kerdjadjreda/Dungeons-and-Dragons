@@ -1,4 +1,4 @@
-const { addCharacters, updateHpEntity } = require("../CONTROLLERS/combatSessionsController");
+//const { addCharacters, updateHpEntity } = require("../CONTROLLERS/combatSessionsController");
 const pool = require("../SERVICES/dbPool");
 
 const combatSessionsDataMapper = {
