@@ -230,7 +230,12 @@ const combatSessionsController = {
     const combatSessionId = Number(req.combatSession.id)
 
     try{
-      const result = await combatSessionsDataMapper.closeCombatTab(combatSessionId);
+      
+      if(req.combatSession.is_active === true) {
+        return res.status(409).json({ error: "Impossible de fermer l'onglet tant quel e combat est actif."});
+      }
+
+      const result = await combatSessionsDataMapper.closeCombatSession(combatSessionId);
       if(!result){
         res.status(404).json({ error: "Session de combat introuvable." });
       }

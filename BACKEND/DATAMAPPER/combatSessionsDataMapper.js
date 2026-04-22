@@ -14,7 +14,7 @@ const combatSessionsDataMapper = {
 
     async findActiveSession(campaignId){
 
-        await pool.query(`SELECT id FROM combat_sessions WHERE campaign_id = $1 AND is_active = true`, [campaignId]);
+        const result = await pool.query(`SELECT id FROM combat_sessions WHERE campaign_id = $1 AND is_active = true`, [campaignId]);
         return result.rows[0];
     },
 
@@ -217,7 +217,7 @@ const combatSessionsDataMapper = {
                                                  AND is_dead = false
                                                  ORDER BY position ASC`, [combatSessionId]);
         const aliveEntites = entitiesResult.rows;
-        if(aliveEntites.lenfth === 0){
+        if(aliveEntites.length === 0){
             return null;
         }
         // je range dans une variable le prochain joueur. je le prends via la première valeur plus élevée que la position du joueur actuel.
@@ -253,7 +253,7 @@ const combatSessionsDataMapper = {
         return result.rows[0];
     },
     async closeCombatSession(combatSessionId) {
-        const result = pool.query(`UPDATE combat_sessions 
+        const result = await pool.query(`UPDATE combat_sessions 
                                    SET is_visible = false 
                                    WHERE id = $1 
                                    RETURNING *`, [combatSessionId]);

@@ -116,7 +116,7 @@ const campaignsDataMapper = {
     `SELECT *
      FROM combat_sessions
      WHERE campaign_id = $1
-     AND is_active = true
+     AND is_visible = true
      ORDER BY started_at DESC`,
     [campaignId]
   );
