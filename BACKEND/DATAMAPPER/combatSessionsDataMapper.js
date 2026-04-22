@@ -251,6 +251,13 @@ const combatSessionsDataMapper = {
         );
 
         return result.rows[0];
+    },
+    async closeCombatSession(combatSessionId) {
+        const result = pool.query(`UPDATE combat_sessions 
+                                   SET is_visible = false 
+                                   WHERE id = $1 
+                                   RETURNING *`, [combatSessionId]);
+        return result.rows[0];
     }
 
 };

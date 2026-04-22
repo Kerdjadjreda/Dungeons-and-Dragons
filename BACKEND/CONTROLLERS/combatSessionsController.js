@@ -224,6 +224,24 @@ const combatSessionsController = {
       console.error(error);
       return res.status(500).json({ error: "Erreur serveur." });
     }
+  },
+
+  async closeCombatTab(req, res){
+    const combatSessionId = Number(req.combatSession.id)
+
+    try{
+      const result = await combatSessionsDataMapper.closeCombatTab(combatSessionId);
+      if(!result){
+        res.status(404).json({ error: "Session de combat introuvable." });
+      }
+      return res.status(200).json({ 
+        message: "L'onglet a bien été fermé.",
+        combatSessions: result
+      });
+    }catch(error){
+      console.error(error);
+      return res.status(500).json({ error: "Erreur liée au serveur." });
+    }
   }
     
 };
