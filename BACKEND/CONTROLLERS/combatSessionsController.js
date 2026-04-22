@@ -199,7 +199,7 @@ const combatSessionsController = {
       if (!result){
         return res.status(404).json({ error : "Il n'y a aucun personnage en vie dans cette session de combat."});
       };
-      console.log(result)
+      
       return res.status(200).json(result);
     } catch(error) {
       return res.status(500).json({ error: "erreur liée au serveur."});

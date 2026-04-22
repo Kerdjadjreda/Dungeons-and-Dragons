@@ -127,6 +127,7 @@ CREATE TABLE combat_sessions (
 
     title TEXT NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT true,
+    is_visible BOOLEAN NOT NULL DEFAULT true,
     started_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     ended_at TIMESTAMPTZ NULL,
     round_number INT NOT NULL DEFAULT 0,
