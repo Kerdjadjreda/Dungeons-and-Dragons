@@ -191,6 +191,7 @@ const combatSessionsDataMapper = {
                                             ON mt.id = ie.monster_template_id
                                             WHERE ie.combat_session_id = $1
                                             ORDER BY ie.position ASC;`, [combatSessionId]);
+                                            
 
         return { combatSession: combatSession.rows[0],
                  instancesEntities: result.rows

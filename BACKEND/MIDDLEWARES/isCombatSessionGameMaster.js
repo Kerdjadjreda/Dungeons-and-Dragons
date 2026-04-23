@@ -15,7 +15,7 @@ const isCombatSessionGameMaster = async(req, res, next) =>{
         if(result.rowCount === 0){
             return res.status(403).json({ error: "Vous ne faites pas parti de cette campagne." });
         
-        } if(!result.rows[0].role === "Maitre du jeu"){
+        } if(result.rows[0].role !== "Maitre du jeu"){
             return res.status(403).json({ error: "Seul un maitre de jeu est autorisé à faire cela." });
         }
         

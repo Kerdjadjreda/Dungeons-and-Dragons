@@ -13,8 +13,6 @@ const combatSessionsController = {
     try{
       const combatSession = await combatSessionsDataMapper.createOne(campaignId, title);
 
-      emitCampaignUpdated(req, campaignId);
-
       return res.status(201).json(combatSession);
 
 
@@ -49,6 +47,8 @@ const combatSessionsController = {
       }
 
     const instancedCharacters = await combatSessionsDataMapper.addCharacters(combatSessionId, campaignId, characters);
+    emitCampaignUpdated(req, req.combatSession.campaign_id);
+
       return res.status(201).json({ instancedCharacters });
 
     }catch(error){
@@ -69,6 +69,8 @@ const combatSessionsController = {
         return res.status(400).json({ error: "Veuillez fournir un ou plusieurs monstres." });
       }
         const instancedMonsters = await combatSessionsDataMapper.addMonsters(combatSessionId, monsters);
+        emitCampaignUpdated(req, req.combatSession.campaign_id);
+
         return res.status(201).json({ instancedMonsters });
     } catch(error){
       console.error(error)
@@ -82,6 +84,7 @@ const combatSessionsController = {
     const combatSessionId = Number(req.params.combatSessionId);
     try{
       const combatSession = await combatSessionsDataMapper.getSessionCombatByPk(combatSessionId);
+      
       return res.status(201).json( combatSession );
     } catch(error){
       console.error(error)
@@ -114,7 +117,7 @@ const combatSessionsController = {
     if (!result) {
       return res.status(404).json({ error: "L'entité n'existe pas." });
     }
-
+emitCampaignUpdated(req, req.combatSession.campaign_id);
     return res.status(200).json(result);
   } catch (error) {
     console.error(error);
