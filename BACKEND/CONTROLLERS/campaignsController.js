@@ -26,6 +26,7 @@ const campaignsController = {
     async getOne(req, res){
         const userId = req.userId;
         const campaignId = req.params.campaignId;
+        console.log("getOne atteint");
         try{
             const campainResult = await campaignsDataMapper.findCampaignByPk(userId, campaignId);
             if(!campainResult.campaign){
@@ -33,7 +34,7 @@ const campaignsController = {
             }
             const role = campainResult.campaign.role;
             const userCharacter = campainResult.characters.find(
-                character => character.user_id === userId
+                character => Number(character.user_id) === Number(userId)
             );
 
             if(role === "Joueur" && !userCharacter){

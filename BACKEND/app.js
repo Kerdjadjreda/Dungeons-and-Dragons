@@ -17,13 +17,7 @@ app.set('views', __dirname + '/VUE')
 app.use(express.static(path.join(__dirname, 'PUBLIC')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.set('trust proxy', 1) // trust first proxy
-//app.use(session({
-  //secret: 'keyboard cat',
-  //resave: true,
-  //saveUninitialized: true,
-  //cookie: { secure: false }
-//}))
+
 const corsOptions = {
   origin: [
     "http://localhost:5173",

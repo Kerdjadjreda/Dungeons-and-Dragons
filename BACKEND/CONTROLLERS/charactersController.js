@@ -40,7 +40,7 @@ const charactersController = {
                 wisdom, 
                 charisma });
 
-              return res.status(201).json({ character });
+              return res.status(200).json({ character });
             } catch(error){
                 //je gère l'erreur s'il y a violation de la contrainte de mes index
                 if (error.code === "23505") {
