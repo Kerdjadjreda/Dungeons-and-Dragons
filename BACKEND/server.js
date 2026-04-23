@@ -23,11 +23,11 @@ io.on("connection", (socket) => {
     console.log("Client connecté:", socket.id);
 
     socket.on("join_campaign", (campaignId) => {
-        socket.join(`campaign_${socket.id} a rejoint campaign-${campaignId}`);
+        socket.join(`campaign-${campaignId}`);
         console.log(`socket ${socket.id} a rejoint campaign ${campaignId}`);
     });
 
-    socket.on("déconnection", () =>{
+    socket.on("disconnect", () =>{
         console.log("Client déconnecté:", socket.id);
     });
 });

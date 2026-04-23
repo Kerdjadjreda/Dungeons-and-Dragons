@@ -1,5 +1,6 @@
 const combatSessionsDataMapper = require("../DATAMAPPER/combatSessionsDataMapper");
 const rollDice = require("../SERVICES/dices");
+const { emitCampaignUpdated, emitCombatUpdated } = require("../UTILS/socketEmitter");
 
 const combatSessionsController = {
 
@@ -11,7 +12,11 @@ const combatSessionsController = {
 
     try{
       const combatSession = await combatSessionsDataMapper.createOne(campaignId, title);
+
+      emitCampaignUpdated(req, campaignId);
+
       return res.status(201).json(combatSession);
+
 
     } catch(error){
       if(error.code === "23505"){
@@ -199,7 +204,7 @@ const combatSessionsController = {
       if (!result){
         return res.status(404).json({ error : "Il n'y a aucun personnage en vie dans cette session de combat."});
       };
-      
+      emitCombatUpdated(req, req.combatSession.campaign_id, req.combatSession.id);
       return res.status(200).json(result);
     } catch(error) {
       return res.status(500).json({ error: "erreur liée au serveur."});
@@ -215,7 +220,7 @@ const combatSessionsController = {
       if (!result) {
         return res.status(404).json({ error: "Session introuvable." });
       }
-
+      emitCampaignUpdated(req, req.combatSession.campaign_id);
       return res.status(200).json({
         message: "Le combat est terminé.",
         combatSession: result
@@ -239,6 +244,7 @@ const combatSessionsController = {
       if(!result){
         res.status(404).json({ error: "Session de combat introuvable." });
       }
+      emitCampaignUpdated(req, req.combatSession.campaign_id);
       return res.status(200).json({ 
         message: "L'onglet a bien été fermé.",
         combatSessions: result

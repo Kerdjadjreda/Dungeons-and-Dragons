@@ -26,7 +26,6 @@ const campaignsController = {
     async getOne(req, res){
         const userId = req.userId;
         const campaignId = req.params.campaignId;
-        console.log("getOne atteint");
         try{
             const campainResult = await campaignsDataMapper.findCampaignByPk(userId, campaignId);
             if(!campainResult.campaign){
