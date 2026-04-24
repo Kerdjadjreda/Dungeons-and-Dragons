@@ -198,6 +198,16 @@ const combatSessionsDataMapper = {
         };
 
     },
+
+    async findEntityByPkAndCombatSession(targetId, combatSessionId){
+        const result = await pool.query(`SELECT * FROM instanced_entity 
+                                         WHERE id = $1 
+                                         AND combat_session_id = $2 
+                                         LIMIT 1`, [targetId, combatSessionId]);
+
+        return result.rows[0];
+    },
+
     async updateHpEntityByPk(entityId, combatSessionId, damages){
         const result = await pool.query(`UPDATE instanced_entity
                                             SET current_hp = GREATEST(0, current_hp - $1),

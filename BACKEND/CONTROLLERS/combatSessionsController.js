@@ -46,8 +46,8 @@ const combatSessionsController = {
         return res.status(400).json({ error: "Veuillez fournir une liste de participants." });
       }
 
-    const instancedCharacters = await combatSessionsDataMapper.addCharacters(combatSessionId, campaignId, characters);
-    emitCampaignUpdated(req, req.combatSession.campaign_id);
+      const instancedCharacters = await combatSessionsDataMapper.addCharacters(combatSessionId, campaignId, characters);
+      emitCampaignUpdated(req, req.combatSession.campaign_id);
 
       return res.status(201).json({ instancedCharacters });
 
@@ -117,7 +117,7 @@ const combatSessionsController = {
     if (!result) {
       return res.status(404).json({ error: "L'entité n'existe pas." });
     }
-emitCampaignUpdated(req, req.combatSession.campaign_id);
+emitCombatUpdated(req, req.combatSession.campaign_id, req.combatSession.id);
     return res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -128,10 +128,11 @@ emitCampaignUpdated(req, req.combatSession.campaign_id);
 
   async attackEntity(req, res){
     const combatSessionId = Number(req.combatSession.id);
-    const attackerId = Number(req.body.attackerId);
+    const attackerId = Number(req.activeEntity.id);
     const targetId = Number(req.body.targetId);
     const damageDice = Number(req.body.damageDice);
     const diceCount = Number(req.body.diceCount);
+
 
     try{
       if(!Number.isInteger(attackerId) || attackerId <= 0) {
@@ -139,6 +140,20 @@ emitCampaignUpdated(req, req.combatSession.campaign_id);
       }
       if(!Number.isInteger(targetId) || targetId <= 0) {
         return res.status(400).json({ error: "La cible est invalide."})
+      }
+
+      const target = await combatSessionsDataMapper.findEntityByPkAndCombatSession(targetId, combatSessionId);
+
+      if(!target) {
+        return res.status(404).json({ error: "La cible n'existe pas." });
+      }
+
+      if (Number(target.id) === Number(attackerId)) {
+        return res.status(400).json({ error: "Impossible de s'attaquer soi-même." });
+      }
+
+      if (target.is_dead || Number(target.current_hp) <= 0) {
+        return res.status(400).json({ error: "Il était si énervant que cela ? Impossible d'attaquer une cible déjà morte !" });
       }
 
       const allowedDice = [6, 8, 10, 12];
@@ -181,9 +196,7 @@ emitCampaignUpdated(req, req.combatSession.campaign_id);
         return res.status(404).json({ error: "Cible introuvable dans cette session." });
       }
 
-    if(updatedTarget.current_hp === 0) {
-      return res.status(400).json({ error : "Vous ne pouvez pas attaquer cette cible." })
-    }
+    emitCombatUpdated(req, req.combatSession.campaign_id, req.combatSession.id);
       return res.status(200).json({
         success: true,
         roll: dice20Result,
