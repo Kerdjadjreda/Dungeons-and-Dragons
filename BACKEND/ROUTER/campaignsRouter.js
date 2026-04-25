@@ -20,7 +20,7 @@ campaignsRouter.post('/:campaignId/combat-sessions', isConnected, isCampaignMemb
 // 1- si l'utilisateur fait parti de la campagne,  2- le role de l'utilisateur.
 campaignsRouter.post('/:campaignId/characters', isConnected, isPlayerMember, charactersController.createOne);
 campaignsRouter.get("/:campaignId/characters", isConnected, isCampaignMember, charactersController.getAllCharacters);
-campaignsRouter.get("/:campaignId/characters/me", isConnected, charactersController.getMyCharacter);
+//campaignsRouter.get("/:campaignId/characters/me", isConnected, charactersController.getMyCharacter);
 
 
 
