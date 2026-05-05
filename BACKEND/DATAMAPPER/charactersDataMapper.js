@@ -48,6 +48,21 @@ const charactersDataMapper = {
 
     },
 
+    async getCharacterByIdAndCampaign(characterId, campaignId) {
+        const result = await pool.query(
+            `
+            SELECT c.*, u.username
+            FROM characters c
+            JOIN users u ON u.id = c.user_id
+            WHERE c.id = $1
+            AND c.campaign_id = $2
+            `,
+            [characterId, campaignId]
+        );
+
+        return result.rows[0];
+    },
+
     async getCharactersById(campaignId){
         const result = await pool.query(`SELECT c.id, c.char_name, c.race, c.char_class, u.username
                                         FROM characters c

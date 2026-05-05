@@ -68,9 +68,10 @@ const charactersController = {
         try{
             const myCharacters = await charactersDataMapper.getMyCharacter(userId, campaignId);
         // si je n'ai aucun personnage je renvoi une erreur.
-            if(!myCharacters.length === 0){
+            if(myCharacters.length === 0){
                 return res.status(404).json({ error: "Aucun personnage n'a été trouvé"});
         }
+        //console.log(myCharacters)
             return res.status(200).json({ myCharacters });
         } catch(error){
             console.error(error);
@@ -84,13 +85,31 @@ const charactersController = {
 
         try{
             const characters = await charactersDataMapper.getCharactersById(campaignId);
-            return res.status(200).json({ characters });
+            return res.status(200).json( characters );
             
         } catch(error){
             console.error(error)
             return res.status(500).json({error: "Erreur liée au serveur"});
         }
         
+    },
+
+    async getCharacterDetails(req, res) {
+        try {
+            const character = Number(req.character);
+
+            const itemList = await charactersDataMapper.getItemListByCharacterId(
+            character.id
+            );
+
+            return res.status(200).json({
+            character,
+            itemList,
+            });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: "Erreur liée au serveur" });
+        }
     },
 
     async getCharacterItems(req, res){
