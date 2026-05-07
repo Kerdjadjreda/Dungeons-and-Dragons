@@ -101,7 +101,7 @@ const charactersController = {
             const itemList = await charactersDataMapper.getItemListByCharacterId(
             character.id
             );
-
+            console.log(itemList);
             return res.status(200).json({
             character,
             itemList,
@@ -129,6 +129,7 @@ const charactersController = {
 
         const characterId = Number(req.params.characterId);
         const { item_name, item_description, item_category, effect_type, effect_value, quantity } = req.body;
+        console.log(req.body);
         try{
              await charactersDataMapper.addItemsByCharacterId(characterId, { 
                 item_name, 

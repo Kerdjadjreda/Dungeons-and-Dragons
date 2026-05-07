@@ -11,7 +11,25 @@ const userController = {
 
         try {
             if (!email || !username || !password) {
-            return res.status(400).json({ error: "Tous les champs sont requis." });
+            return res.status(400).json({
+                error: "Tous les champs sont requis.",
+            });
+            }
+
+            const usernameRegex = /^[a-zA-Z0-9]+$/;
+
+            if (!usernameRegex.test(username)) {
+            return res.status(400).json({
+                error: "Le pseudo ne peut contenir que des lettres et des chiffres.",
+            });
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                error: "Adresse email invalide.",
+            });
             }
 
             const passwordRegex = /^(?=.*\d)(?=.*[^A-Za-z0-9]).{11,}$/;
@@ -40,11 +58,13 @@ const userController = {
 
             if (error.code === "23505") {
             return res.status(409).json({
-                error: "Cet email ou ce nom d'utilisateur est déjà utilisé.",
+                error: "Cet email ou ce pseudo est déjà utilisé.",
             });
             }
 
-            return res.status(500).json({ error: "Erreur serveur." });
+            return res.status(500).json({
+            error: "Erreur liée au serveur.",
+            });
         }
     },
 
