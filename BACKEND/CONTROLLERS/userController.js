@@ -6,21 +6,46 @@ const saltRounds = 10;
 
 const userController = {
 
-    async register(req, res)  {
-        //Je récupère les informations du body
+    async register(req, res) {
         const { email, username, password } = req.body;
-        
-        const hashedPassword = await bcrypt.hash(password, saltRounds)
-        // j'appelle ensuite le dataMapper pour lui envoyer les informations et créer un utilisateur
-        const newUser = await userDatamapper.createOne({
+
+        try {
+            if (!email || !username || !password) {
+            return res.status(400).json({ error: "Tous les champs sont requis." });
+            }
+
+            const passwordRegex = /^(?=.*\d)(?=.*[^A-Za-z0-9]).{11,}$/;
+
+            if (!passwordRegex.test(password)) {
+            return res.status(400).json({
+                error:
+                "Le mot de passe doit contenir au moins 11 caractères, un chiffre et un caractère spécial.",
+            });
+            }
+
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+            const newUser = await userDatamapper.createOne({
             email,
             username,
-            hashedPassword
-        });
+            hashedPassword,
+            });
 
-        // et je revoi la réponse
-        res.status(201).json(newUser);
+            return res.status(201).json({
+            user: newUser,
+            message: "Compte créé avec succès.",
+            });
+        } catch (error) {
+            console.error(error);
 
+            if (error.code === "23505") {
+            return res.status(409).json({
+                error: "Cet email ou ce nom d'utilisateur est déjà utilisé.",
+            });
+            }
+
+            return res.status(500).json({ error: "Erreur serveur." });
+        }
     },
 
     async login(req, res) {
