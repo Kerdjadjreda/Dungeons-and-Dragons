@@ -1,4 +1,3 @@
---transaction pour m'assurer que toutes mes tables passent.
 BEGIN;
 
 CREATE TABLE users (
@@ -7,19 +6,58 @@ CREATE TABLE users (
     email TEXT NOT NULL UNIQUE,
     username TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
+
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE campaigns (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
     camp_name TEXT NOT NULL,
     mode TEXT NOT NULL,
     synopsis TEXT,
+
     creator_user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+
     invite_code TEXT NOT NULL UNIQUE,
     is_active BOOLEAN NOT NULL DEFAULT true,
+
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+CREATE TABLE assets (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
+    name TEXT NOT NULL,
+    url TEXT NOT NULL,
+    public_id TEXT,
+
+    asset_type TEXT NOT NULL
+    CHECK (asset_type IN (
+        'user_avatar',
+        'character_portrait',
+        'campaign_cover',
+        'item_icon',
+        'monster_image',
+        'map_tile',
+        'background'
+    )),
+
+    category TEXT,
+
+    rarity TEXT NOT NULL DEFAULT 'common'
+    CHECK (rarity IN ('common', 'uncommon', 'rare', 'epic', 'legendary')),
+
+    is_active BOOLEAN NOT NULL DEFAULT true,
+
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE users
+ADD COLUMN avatar_asset_id BIGINT NULL REFERENCES assets(id) ON DELETE SET NULL;
+
+ALTER TABLE campaigns
+ADD COLUMN cover_asset_id BIGINT NULL REFERENCES assets(id) ON DELETE SET NULL;
 
 CREATE TABLE campaign_members (
     role TEXT NOT NULL,
@@ -41,8 +79,11 @@ CREATE TABLE campaign_members (
 
 CREATE TABLE characters (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
     user_id BIGINT NOT NULL,
     campaign_id BIGINT NOT NULL,
+
+    portrait_asset_id BIGINT NULL REFERENCES assets(id) ON DELETE SET NULL,
 
     char_name TEXT NOT NULL,
     race TEXT NOT NULL,
@@ -62,7 +103,6 @@ CREATE TABLE characters (
 
     is_dead BOOLEAN NOT NULL DEFAULT false,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-
 
     FOREIGN KEY(user_id)
     REFERENCES users(id) ON DELETE CASCADE,
@@ -85,10 +125,14 @@ WHERE is_dead = false;
 CREATE TABLE items (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
+    icon_asset_id BIGINT NULL REFERENCES assets(id) ON DELETE SET NULL,
+
     item_name TEXT NOT NULL,
     item_description TEXT,
+
     item_category TEXT NOT NULL DEFAULT 'divers'
     CHECK (item_category IN ('divers', 'equipement', 'consommable', 'arme', 'magie')),
+
     effect_type TEXT,
     effect_value INT
 );
@@ -99,7 +143,7 @@ CREATE TABLE characters_items (
 
     quantity BIGINT NOT NULL DEFAULT 0,
     is_equipped BOOLEAN NOT NULL DEFAULT false,
-    
+
     PRIMARY KEY (character_id, item_id),
 
     FOREIGN KEY (character_id)
@@ -111,12 +155,16 @@ CREATE TABLE characters_items (
 
 CREATE TABLE monster_templates (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
+    image_asset_id BIGINT NULL REFERENCES assets(id) ON DELETE SET NULL,
+
     monster_name TEXT NOT NULL,
     challenge_rating NUMERIC(4,2) NOT NULL DEFAULT 0,
     monster_type TEXT NOT NULL,
     source TEXT NOT NULL,
     stat_block JSONB NOT NULL
 );
+
 CREATE INDEX idx_monster_templates_name
 ON monster_templates(monster_name);
 
@@ -128,12 +176,14 @@ CREATE TABLE combat_sessions (
     title TEXT NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT true,
     is_visible BOOLEAN NOT NULL DEFAULT true,
+
     started_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     ended_at TIMESTAMPTZ NULL,
+
     round_number INT NOT NULL DEFAULT 0,
     current_position INT NOT NULL DEFAULT 1,
 
-    FOREIGN KEY (campaign_id) 
+    FOREIGN KEY (campaign_id)
     REFERENCES campaigns(id) ON DELETE CASCADE
 );
 
@@ -143,16 +193,18 @@ WHERE is_active = true;
 
 CREATE TABLE instanced_entity (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    
+
     combat_session_id BIGINT NOT NULL,
     character_id BIGINT NULL,
     monster_template_id BIGINT NULL,
 
     entity_type TEXT NOT NULL,
+
     hp_max INT NOT NULL,
     current_hp INT NOT NULL,
     initiative INT NOT NULL,
     position INT NOT NULL,
+
     is_dead BOOLEAN NOT NULL DEFAULT false,
 
     gold_delta INT NOT NULL DEFAULT 0,
@@ -175,12 +227,13 @@ CREATE TABLE instanced_entity (
     )
 );
 
-CREATE UNIQUE INDEX uniq_character_per_combat_session 
+CREATE UNIQUE INDEX uniq_character_per_combat_session
 ON instanced_entity (combat_session_id, character_id)
 WHERE entity_type = 'character';
 
 CREATE TABLE entity_effects (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+
     instanced_entity_id BIGINT NOT NULL,
 
     effect_name TEXT NOT NULL,
@@ -188,7 +241,7 @@ CREATE TABLE entity_effects (
     stat TEXT NOT NULL,
     modifier INT NOT NULL DEFAULT 0,
     rounds_remaining INT NOT NULL DEFAULT 0,
-    
+
     FOREIGN KEY (instanced_entity_id)
     REFERENCES instanced_entity(id) ON DELETE CASCADE
 );
